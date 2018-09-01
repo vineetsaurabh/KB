@@ -1,0 +1,30 @@
+<div class="container col-lg-10">
+    <div fxLayout="column" fxLayoutGap="25px">
+        <div fxLayout="column" fxLayoutGap="5px">
+            <div class="chart-title" fxLayout="row" fxLayoutGap="25px">
+                <div class="fill-remaining-space"></div>
+                <div fxLayoutAlign="center">
+                    <h2>{{title}}</h2>
+                </div>
+                <div class="fill-remaining-space"></div>
+                <div fxLayoutAlign="end">
+                    <button class="btn report-download" matTooltip="Save as PDF" (click)="saveAsPdf()">
+                        <i class="fa fa-file-pdf-o"></i>
+                    </button>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center">
+                <mat-radio-group [(ngModel)]="selectedNoOfMonth" fxLayoutGap="30px">
+                    <mat-radio-button color="primary" *ngFor="let noOfMonth of noOfMonths" [value]="noOfMonth" (change)="onNoOfMonthChange($event)">
+                        <div>
+                            <small>Last </small>
+                            {{noOfMonth}}
+                            <small> Months</small>
+                        </div>
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div fxLayoutAlign="center" id="searchReportMonthwise"></div>
+    </div>
+</div>

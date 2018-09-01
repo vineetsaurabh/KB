@@ -1,0 +1,52 @@
+<div class="container">
+    <h2 class="text-center" class="edit-item">Edit Ticket</h2>
+    <form #editTicketForm="ngForm" (ngSubmit)="editTicket(editTicketForm)" ngNativeValidate>
+        <mat-form-field>
+            <mat-select placeholder="Choose Ticket Type" [(ngModel)]="ticket.type" name="type" id="type">
+                <mat-option *ngFor="let ticketType of ticketTypes" [value]="ticketType.ticketTypeName">
+                    {{ticketType.ticketTypeName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="ticket.summary" name="summary" id="summary" placeholder="Summary">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <div class="editor block">
+                <app-ngx-editor minHeight="50px" [(ngModel)]="ticket.description" name="description" [placeholder]="'Description'"></app-ngx-editor>
+            </div>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-select placeholder="Choose Priority" [(ngModel)]="ticket.priority" name="priority" id="priority">
+                    <mat-option *ngFor="let priorityType of priorityTypes" [value]="priorityType.priorityTypeName">
+                        {{priorityType.priorityTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput type="product" [(ngModel)]="ticket.product" name="product" id="product" placeholder="Product">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput type="module" [(ngModel)]="ticket.module" name="module" id="module" placeholder="Module">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput type="operation" [(ngModel)]="ticket.operation" name="operation" id="operation" placeholder="Operation">
+            </mat-form-field>
+        </div>
+        <div class="text-center mb-4">
+            <button mat-raised-button [disabled]="!editTicketForm.valid">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+        </div>
+    </form>
+</div>

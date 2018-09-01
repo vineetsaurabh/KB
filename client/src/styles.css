@@ -1,0 +1,360 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~material-design-icons/iconfont/material-icons.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    background-color: rgb(250,255,255);
+}
+
+.error-domain{
+    cursor: pointer;
+    color: purple;
+}
+.error-domain:hover{
+    outline: none !important;
+    box-shadow: 0 0 10px blue;
+    /*background-color: mediumturquoise!important;*/
+    background: linear-gradient(mediumturquoise, palegreen, mediumseagreen)!important;
+    z-index: 10;
+}
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+.mat-toolbar {
+    background: linear-gradient(to right,  steelblue, lightskyblue, steelblue); 
+    color: white;
+}
+.global-search{
+    background-color: azure;
+    width: 500px;
+    height: 30px;
+}
+.global-search:focus{
+    background-color: beige;
+}
+.search-input{
+    font-size: 16px!important;
+    font-weight: bold!important;
+    color: purple!important;
+}
+.homepage-info-1{
+    background-color: #FFCD02;
+}
+.homepage-info-title-1{
+    color: black;
+}
+.homepage-info-text-1{
+    color: darkred;
+}
+.homepage-info-2{
+    background-color: #0E6193;
+}
+.homepage-info-title-2{
+    color: black;
+}
+.homepage-info-text-2{
+    color: white;
+}
+
+/* Table Styles */
+.list-title{
+    color: purple;
+}
+.table-container {
+    display: flex;
+    flex-direction: column;
+}
+.mat-header-cell{
+    font-weight: bold;
+    text-align: center;
+    color: darkblue;
+}
+.highlight-row{
+    background: linear-gradient(azure, powderblue);
+}
+.inactive-user {
+    color: gray;
+}
+.btn:not([disabled]):hover{
+    background: linear-gradient(powderblue, azure, powderblue)!important;
+    z-index: 2;
+}
+/* Border with text on it, like fieldset */
+div.border-text{
+    border: 1px dotted;
+    border-color: lightgrey;
+    padding: 0px 10px 2px 10px;
+}
+div.border-text h1{
+    text-align: center;
+    margin-top: -10px;
+    height: 12px;
+    line-height: 16px;
+    font-size: 10px;
+    color: cornflowerblue;
+}
+div.border-text h1 span{
+    background-color: inherit;
+}
+.file-input{
+    margin-bottom: 0px;
+}
+/* Table Columns */
+.mat-column-Checkbox{
+    max-width: 50px;
+}
+
+
+
+/* Form Styles */
+mat-form-field {
+    width: 100%;
+}
+.mat-form-field {
+    width: 100%;
+}
+.add-item,.edit-item{
+    color: purple;
+    text-align: center;
+}
+.add-solution{
+    /*background: linear-gradient(to right, rgba(202, 230, 247, 0.897), powderblue, lightskyblue);*/
+    background-color: rgba(227, 236, 241, 0.897);
+}
+.add-item-field{
+    background-color: azure;
+    color: darkblue;
+}
+
+/* Print */
+@media print {
+    body * {
+      visibility: hidden;
+    }
+    div.printable, div.printable * {
+      visibility: visible;
+    }
+    div.printable {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+/* Icons */
+.home-icon{
+    color: yellow;
+}
+.fa-pencil{
+    color: midnightblue;
+}
+.fa-bars{
+    color: goldenrod;
+}
+.add-element{
+    color: forestgreen;
+}
+.fa-trash, .fa-trash-o{
+    color: maroon;
+}
+.fa-rss{
+    color: coral;
+}
+.fa-rss-square{
+    color: cornflowerblue;
+}
+.fa-upload{
+    color: darkblue;
+}
+.fa-file-pdf-o{
+    color: red;
+}
+.fa-file-excel-o{
+    color: mediumseagreen;
+}
+.fa-print{
+    color: darkslategray;
+}
+.fa-check{
+    color: darkgreen;
+}
+.fa-times{
+    color: crimson;
+}
+.fa-group{
+    color: blueviolet;
+}
+
+/* Comment */
+.commented{
+    font-size: 12px;
+    display: inline-block;
+}
+.commented-by{
+    font-weight: bold;
+    color: royalblue;
+}
+.commented-on{
+    font-style: oblique;
+    color: slateblue;
+}
+.edited-on{
+    font-size: 10px;
+    font-style: italic;
+    color: steelblue;
+}
+.comment-action{
+    min-width: 90px!important;
+    margin-right: 28px;
+}
+.comment-action-button{
+    height: 24px!important;
+    line-height: 24px!important;
+    padding: 0 0 0 8px!important;
+}
+.comment-action-icon{
+    margin-right: 2px!important;
+}
+.comment-action-label{
+    font-size: 14px;
+}
+.comment-action-edit-icon{
+    margin-right: 2px!important;
+    color: royalblue!important;
+}
+.comment-action-delete-icon{
+    margin-right: 2px!important;
+    color: maroon!important;
+}
+
+/* Error Detail */
+.error-detail{
+    background: radial-gradient(rgb(225,255,255), rgb(250,255,255));
+}
+.error-description{
+    color: purple;
+}
+.error-property{
+    color: royalblue;
+    font-weight: 400;
+    width: 90px;
+}
+.error-property-value{
+    color: blue;
+}
+.error-attachment{
+    color: royalblue;
+}
+.error-attachment-button{
+    background: transparent;
+    border: none;
+}
+.error-attachment-button:hover{
+    background: linear-gradient(powderblue, azure, powderblue);
+}
+/* Cause Panel */
+.cause-panel-header{
+    height: 40px!important;
+}
+.cause-panel-action{
+    padding: 6px 24px 6px 24px!important;
+    background: linear-gradient(to right, cadetblue, powderblue);
+}
+.solution-title{
+    font-weight: 200;
+    font-size: 12px;
+    color: goldenrod;
+}
+.solution-last-modified-on{
+    font-size: 10px;
+    font-style: italic;
+    color: coral;
+}
+/* Cause Detail */
+.cause-detail{
+    background-color: azure;
+}
+.cause-document-preview{
+    height: 200px;
+    width: 180px;
+}
+.root-cause-name, .attachment-category-name{
+    background-color: rgb(245, 252, 252);
+    color: darkblue;
+    font-weight: 600;
+}
+
+/* Profile Picture */
+img.user-picture{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+img.profile-picture{
+    height: 200px;
+}
+.profile-picture-container{
+	position: relative;
+	display: inline-block;
+}
+.profile-picture-container:hover .edit{
+	display: block;
+}
+.edit{
+	padding-top: 7px;	
+	padding-right: 7px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
+}
+
+/* Chart Styles */
+.chart-title{
+    color: royalblue;
+}
+canvas#searchReportChart{
+    width: 800px;
+    height: 500px;
+}
+.rca-report-back{
+    color: green;
+    background-color: transparent;
+}
+.rca-report-back:hover{
+    background: transparent!important;
+}
+.report-download{
+    background: transparent;
+}
+.report-download:hover{
+    background: transparent!important;
+}
+
+/* User Info */
+.user-info-label{
+    min-width: 150px;
+    color: royalblue;
+    font-weight: 400;
+}
+.user-info-value{
+    color: darkblue;
+    font-weight: 800;
+}
+.change-password{
+    color: powderblue;
+    cursor: pointer;
+}
+.change-password:hover{
+    color: purple;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+/* User Table */
+.mat-column-DateOfBirth{
+    max-width: 120px;
+}
+.mat-column-Phone{
+    max-width: 120px;
+}

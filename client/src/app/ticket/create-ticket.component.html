@@ -1,0 +1,67 @@
+<div class="col-md-10 container">
+    <h2 class="text-center" class="add-item">Create Ticket</h2>
+    <form #ticketForm="ngForm" (ngSubmit)="createTicket(ticketForm)" ngNativeValidate>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-select placeholder="Choose Ticket Type" [(ngModel)]="ticket.type" name="type" id="type">
+                    <mat-option *ngFor="let ticketType of ticketTypes" [value]="ticketType.ticketTypeName">
+                        {{ticketType.ticketTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="ticket.summary" name="summary" id="summary" #summary="ngModel" placeholder="Summary">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <div class="editor block">
+                <app-ngx-editor minHeight="50px" [(ngModel)]="ticket.description" name="description" [placeholder]="'Description'"></app-ngx-editor>
+            </div>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-select placeholder="Choose Priority" [(ngModel)]="ticket.priority" name="priority" id="priority">
+                    <mat-option *ngFor="let priorityType of priorityTypes" [value]="priorityType.priorityTypeName">
+                        {{priorityType.priorityTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="ticket.product" name="product" id="product" placeholder="Product">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="ticket.module" name="module" id="module" placeholder="Module">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="ticket.operation" name="operation" id="operation" placeholder="Operation">
+            </mat-form-field>
+        </div>
+
+        <div class="form-group" [formGroup]="userNameForm">
+            <mat-form-field>
+                <input matInput placeholder="Assign To" formControlName="userNameGroup" [matAutocomplete]="autoGroup">
+                <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='setAssignee($event.option.value)'>
+                    <mat-optgroup *ngFor="let group of userNameGroupOptions | async" [label]="group.letter">
+                        <mat-option *ngFor="let name of group.names" [value]="name">
+                            {{name}}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!ticketForm.valid">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

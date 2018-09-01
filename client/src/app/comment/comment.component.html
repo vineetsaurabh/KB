@@ -1,0 +1,43 @@
+<div [hidden]="deleted">
+    <div fxLayout="row">
+        <div fxLayout="column" fxLayoutGap="5px" [hidden]="editing">
+            <div [innerHTML]="comment.content"></div>
+            <div class="commented" fxLayout="row" fxLayoutGap="5px">
+                <div class="commented-by"> -
+                    <a [routerLink]="['/findUser', comment.user.userid]"> {{comment.user.firstName}} </a>
+                </div>
+                <div class="commented-on"> {{comment.createdOn | amTimeAgo}} </div>
+                <div class="edited-on" *ngIf="comment.modifiedOn" fxFlexAlign="end">
+                    (edited {{comment.modifiedOn | amTimeAgo}})
+                </div>
+            </div>
+        </div>
+        <span class="fill-remaining-space"></span>
+        <div *ngIf="comment.user.userid == userid" fxLayoutAlign="end" [hidden]="editing">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before" class="comment-action">
+                <button mat-menu-item (click)="openInEdit(comment)" class="comment-action-button">
+                    <mat-icon class="comment-action-icon comment-action-edit-icon">edit</mat-icon>
+                    <span class="comment-action-label">Edit</span>
+                </button>
+                <button mat-menu-item (click)="deleteComment(comment)" class="comment-action-button">
+                    <mat-icon class="comment-action-icon comment-action-delete-icon">delete</mat-icon>
+                    <span class="comment-action-label">Delete</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+    <div [hidden]="!editing">
+        <div class="editor block">
+            <app-ngx-editor minHeight="50px" [(ngModel)]="edithtmlContent"></app-ngx-editor>
+        </div>
+        <div fxLayoutAlign="center">
+            <button class="btn" (click)="updateComment()" matTooltip="Save Comment" [disabled]="edithtmlContent == ''">
+                <i class="fa fa-floppy-o"></i>
+            </button>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+</div>

@@ -1,0 +1,54 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'rolaguru'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    
+    // JWT Authentication(Spring Boot Security)
+    compile 'org.springframework.boot:spring-boot-starter-security' 
+    compile 'io.jsonwebtoken:jjwt:0.9.0'
+    //compile 'commons-dbcp:commons-dbcp'
+        
+    //to send Mail
+    compile 'org.springframework.boot:spring-boot-starter-mail:2.0.1.RELEASE'
+    compile 'org.springframework:spring-context-support:5.0.8.RELEASE'
+    compile 'javax.mail:mail:1.4.1'
+
+    // Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
+    
+    //to work with the old Microsoft binary file format for excel. These file formats have .xls extension.
+    compile "org.apache.poi:poi:3.17"
+    
+    //to generate PDF report
+    compile "org.apache.pdfbox:pdfbox:2.0.4"
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+}

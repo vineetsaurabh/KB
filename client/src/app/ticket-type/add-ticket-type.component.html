@@ -1,0 +1,21 @@
+<div class="col-md-10 container">
+    <h2 class="text-center" class="add-item">Add Ticket Type</h2>
+    <form #ticketTypeForm="ngForm" (ngSubmit)="createTicketType(ticketTypeForm)" ngNativeValidate>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput required [(ngModel)]="ticketType.ticketTypeName" name="ticketTypeName" id="ticketTypeName" #ticketTypeName="ngModel"
+                    placeholder="Ticket Type Name">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput required [(ngModel)]="ticketType.description" name="description" id="description" #firstName="ngModel" placeholder="Description">
+            </mat-form-field>
+        </div>
+        <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!ticketTypeForm.valid">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

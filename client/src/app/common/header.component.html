@@ -1,0 +1,59 @@
+<div>
+    <mat-toolbar class="mat-elevation-z4">
+        <mat-toolbar-row fxLayoutGap="5px">
+            <div matTooltip="{{currentUser}}">
+                <img class="user-picture">
+            </div>
+            <div></div>
+            <div>
+                <input class="global-search" type="text" placeholder="Search" [(ngModel)]="input" />
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="find()" matTooltip="Search">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+            <span class="fill-remaining-space"></span>
+            <div class="d-none d-sm-block">
+                <small>{{currentUser}}</small>
+            </div>
+            <div *ngIf="authService.isAuthenticated()">
+                <button mat-button mat-icon-button matTooltip="Home" routerLink="/homepage">
+                    <mat-icon class="home-icon">home</mat-icon>
+                </button>
+            </div>
+            <div *ngIf="authService.isAuthenticated()">
+                <button mat-button mat-icon-button mat-raised-button [matMenuTriggerFor]="menu" matTooltip="My Rolasist">
+                    <div class="image-container">
+                        <img src="../assets/images/rolaguru_32.png" />
+                    </div>
+                </button>
+                <mat-menu #menu="matMenu" overlapTrigger="false">
+                    <button mat-menu-item [routerLink]="['/findUser', currentUserId]">My Profile</button>
+                    <button mat-menu-item [matMenuTriggerFor]="useradmin">User Admin</button>
+                    <button mat-menu-item [matMenuTriggerFor]="ticketadmin">Ticket Admin</button>
+                    <button mat-menu-item [matMenuTriggerFor]="reports">Reports</button>
+                </mat-menu>
+                <mat-menu #useradmin="matMenu">
+                    <button mat-menu-item [routerLink]="['/listUsers']">User Management</button>
+                    <button mat-menu-item [routerLink]="['/listRoles']">Role Management</button>
+					<button mat-menu-item [routerLink]="['/listTeams']">Team Management</button>
+                </mat-menu>
+                <mat-menu #ticketadmin="matMenu">
+                    <button mat-menu-item [routerLink]="['/listTicketTypes']">Ticket Type Management</button>
+                    <button mat-menu-item [routerLink]="['/listPriorityTypes']">Priority Type Management</button>
+                </mat-menu>
+                <mat-menu #reports="matMenu">
+                    <button mat-menu-item [routerLink]="['/searchReportMonthwise']">Search Report (Monthwise)</button>
+                    <button mat-menu-item [routerLink]="['/searchReportInputwise']">Search Report (Inputwise)</button>
+                </mat-menu>
+            </div>
+            <div>
+                <button mat-button mat-icon-button mat-raised-button (click)="logout()" matTooltip="Logout">
+                    <mat-icon color="warn">exit_to_app</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+<br/>
+
+<content></content>
