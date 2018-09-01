@@ -47,7 +47,7 @@ export class AssignTicketComponent {
     }
 
     assignTickets() {
-        this.tickets.forEach(ticket => ticket.assignedTo = this.selectedUser.username);
+        this.tickets.forEach(ticket => ticket.assignedTo = this.selectedUser);
         this.ticketService.assignTickets(this.tickets)
             .subscribe(res => {
                 this.toastService.success(`Ticket assigned`);

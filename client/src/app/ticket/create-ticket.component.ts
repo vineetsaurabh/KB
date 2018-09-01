@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 import { Ticket } from './ticket.model';
 import { TicketService } from './ticket.service';
@@ -9,10 +11,9 @@ import { TicketTypeService } from '../ticket-type/ticket-type.service';
 import { TicketType } from '../ticket-type/ticket-type.model';
 import { PriorityTypeService } from '../priority-type/priority-type.service';
 import { PriorityType } from '../priority-type/priority-type.model';
+import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
 import { UserNameGroup } from '../user/user-name-group.model';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 
 @Component({
     templateUrl: './create-ticket.component.html'
@@ -64,17 +65,21 @@ export class CreateTicketComponent {
             });
     }
 
-    private _filterGroup(value: string): UserNameGroup[] {
+    private _filterGroup(value: any): UserNameGroup[] {
         if (value) {
             return this.userNameGroups
-                .map(group => ({ letter: group.letter, names: _filter(group.names, value) }))
-                .filter(group => group.names.length > 0);
+                .map(group => ({ letter: group.letter, assignees: _filter(group.assignees, value) }))
+                .filter(group => group.assignees.length > 0);
         }
         return this.userNameGroups;
     }
 
-    setAssignee(userFullName: string) {
-        this.ticket.assignedTo = userFullName;
+    displayFn(user?: User): string | undefined {
+        return user ? user.firstName + " " + user.lastName : undefined;
+    }
+
+    setAssignee(user: User) {
+        this.ticket.assignedTo = user;
     }
 
     createTicket(): void {
@@ -87,7 +92,7 @@ export class CreateTicketComponent {
 
 }
 
-export const _filter = (opt: string[], value: string): string[] => {
-    const filterValue = value.toLowerCase();
-    return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+export const _filter = (options: User[], user: User): User[] => {
+    const filterValue = user.firstName.toLowerCase();
+    return options.filter(option => option.firstName.toLowerCase().indexOf(filterValue) === 0);
 };

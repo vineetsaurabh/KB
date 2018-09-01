@@ -2,11 +2,21 @@ package com.rolaface.model;
 
 import java.util.List;
 
+import com.rolaface.entities.User;
+
 public class UserNameGroup {
 
 	private String letter;
 
-	private List<String> names;
+	private List<User> assignees;
+
+	public List<User> getAssignees() {
+		return assignees;
+	}
+
+	public void setAssignees(List<User> assignees) {
+		this.assignees = assignees;
+	}
 
 	public String getLetter() {
 		return letter;
@@ -14,14 +24,6 @@ public class UserNameGroup {
 
 	public void setLetter(String letter) {
 		this.letter = letter;
-	}
-
-	public List<String> getNames() {
-		return names;
-	}
-
-	public void setNames(List<String> names) {
-		this.names = names;
 	}
 
 }

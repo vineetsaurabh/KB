@@ -203,19 +203,19 @@ public class UserController extends Auditable<ContextUser> {
 			String letter = String.valueOf(firstName.charAt(0));
 
 			UserNameGroup userNameGroup = userNameGroups.get(letter);
-			List<String> names = null;
+			List<User> assignees = null;
 			if (userNameGroup == null) {
 				userNameGroup = new UserNameGroup();
 				userNameGroup.setLetter(letter);
-				names = new ArrayList<>();
+				assignees = new ArrayList<>();
 			} else {
-				names = userNameGroup.getNames();
-				if (names == null) {
-					names = new ArrayList<>();
+				assignees = userNameGroup.getAssignees();
+				if (assignees == null) {
+					assignees = new ArrayList<>();
 				}
 			}
-			names.add(user.getFirstName() + " " + user.getLastName());
-			userNameGroup.setNames(names);
+			assignees.add(user);
+			userNameGroup.setAssignees(assignees);
 			userNameGroups.put(letter, userNameGroup);
 		}
 		return new ArrayList<UserNameGroup>(userNameGroups.values());

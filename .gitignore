@@ -35,6 +35,7 @@ server/src/main/resources/application.properties
 
 *.classpath
 *.bat
+*.gradle
 
 #client config files
 /client/.angular-cli.json

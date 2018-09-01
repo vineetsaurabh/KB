@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -57,14 +58,14 @@ public class Ticket {
 	@Column
 	private String status;
 
-	@Column
-	private String assignedTo;
+	@ManyToOne
+	private User assignedTo;
 
-	public String getAssignedTo() {
+	public User getAssignedTo() {
 		return assignedTo;
 	}
 
-	public void setAssignedTo(String assignedTo) {
+	public void setAssignedTo(User assignedTo) {
 		this.assignedTo = assignedTo;
 	}
 

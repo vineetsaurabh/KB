@@ -97,7 +97,11 @@
 
         <ng-container matColumnDef="Assigned To">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned To </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.assignedTo}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.assignedTo">
+                    {{ticket.assignedTo.firstName}} {{ticket.assignedTo.lastName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Assigned By">

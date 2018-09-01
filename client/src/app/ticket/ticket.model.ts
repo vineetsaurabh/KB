@@ -12,7 +12,7 @@ export class Ticket {
     module: string;
     operation: string;
     status: string;
-    assignedTo: string;
+    assignedTo: User;
     assignedBy: string;
     assignedOn: Date;
     createdBy: string;

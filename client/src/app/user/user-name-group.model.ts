@@ -1,5 +1,6 @@
+import { User } from './user.model';
 
 export interface UserNameGroup {
     letter: string;
-    names: string[];
+    assignees: User[];
 }
