@@ -9,6 +9,7 @@ import { TicketService } from './ticket.service';
 import { TokenStorage } from '../login/token.storage';
 import { RolaguruUtils } from '../util/rolaguru.util';
 import { Rating } from './rating.model';
+import { User } from '../user/user.model';
 
 @Component({
     selector: 'ticket-detail',
@@ -27,7 +28,7 @@ export class TicketDetailComponent implements OnInit {
         module: '',
         operation: '',
         status: '',
-        assignedTo: '',
+        assignedTo: new User(),
         assignedBy: '',
         assignedOn: new Date(),
         createdBy: '',
