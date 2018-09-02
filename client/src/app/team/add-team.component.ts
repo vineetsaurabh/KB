@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgForm, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 
@@ -26,10 +25,10 @@ export class AddTeamComponent extends SelectUserComponent {
         super(fb, userService);
     }
 
-    createTeam(userForm: NgForm): void {
+    createTeam(): void {
         this.teamService.createTeam(this.team)
             .subscribe(data => {
-                this.toastService.success(`User ${this.team.teamName} added`);
+                this.toastService.success(`Team ${this.team.teamName} added`);
                 this.dialogRef.close(false);
             });
     }

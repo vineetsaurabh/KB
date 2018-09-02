@@ -1,0 +1,37 @@
+<div class="col-md-10 container">
+    <h2 class="text-center" class="add-item">Add State</h2>
+    <form #stateForm="ngForm" (ngSubmit)="createState(stateForm)" ngNativeValidate>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput required [(ngModel)]="state.stateName" name="name" id="name" #name="ngModel" placeholder="Name">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput required [(ngModel)]="state.stateOrder" name="stateOrder" id="stateOrder" #stateOrder="ngModel" placeholder="State Order">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <textarea matInput matTextareaAutosize required [(ngModel)]="state.description" name="description" id="description" #firstName="ngModel"
+                    placeholder="Description">
+                </textarea>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="state.promoteLabel" name="promoteLabel" id="promoteLabel" #promoteLabel="ngModel" placeholder="Promote Label">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="state.demoteLabel" name="demoteLabel" id="demoteLabel" #demoteLabel="ngModel" placeholder="Demote Label">
+            </mat-form-field>
+        </div>
+        <div class="text-center">
+            <button mat-raised-button color="primary" [disabled]="!stateForm.valid">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

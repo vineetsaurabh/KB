@@ -34,6 +34,9 @@ import { EditTicketTypeComponent } from './ticket-type/edit-ticket-type.componen
 import { AddPriorityTypeComponent } from './priority-type/add-priority-type.component';
 import { ListPriorityTypeComponent } from './priority-type/list-priority-type.component';
 import { EditPriorityTypeComponent } from './priority-type/edit-priority-type.component';
+import { AddStateComponent } from './state/add-state.component';
+import { ListStateComponent } from './state/list-state.component';
+import { EditStateComponent } from './state/edit-state.component';
 
 const routes: Routes = [
     {
@@ -195,6 +198,24 @@ const routes: Routes = [
             {
                 path: ':id',
                 component: EditPriorityTypeComponent
+            },
+            {
+                path: '',
+                component: TableConfiguratorComponent
+            }
+        ]
+    },
+    {
+        path: 'createState',
+        component: AddStateComponent
+    },
+    {
+        path: 'listStates',
+        component: ListStateComponent,
+        children: [
+            {
+                path: ':id',
+                component: EditStateComponent
             },
             {
                 path: '',

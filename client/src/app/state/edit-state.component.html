@@ -1,0 +1,37 @@
+<div class="container">
+    <h2 class="text-center" class="edit-item">Edit State</h2>
+    <form #editStateForm="ngForm" (ngSubmit)="updateState(editStateForm)" ngNativeValidate>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput required [(ngModel)]="state.stateName" name="name" id="name" #firstName="ngModel" placeholder="Name">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput required [(ngModel)]="state.stateOrder" name="stateOrder" id="stateOrder" #stateOrder="ngModel" placeholder="State Order">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <textarea matInput matTextareaAutosize [(ngModel)]="state.description" name="description" id="description" placeholder="Description">
+                </textarea>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="state.promoteLabel" name="promoteLabel" id="promoteLabel" #promoteLabel="ngModel" placeholder="Promote Label">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput [(ngModel)]="state.demoteLabel" name="demoteLabel" id="demoteLabel" #demoteLabel="ngModel" placeholder="Demote Label">
+            </mat-form-field>
+        </div>
+        <div class="text-center mb-4">
+            <button mat-raised-button [disabled]="!editStateForm.valid">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+        </div>
+    </form>
+</div>

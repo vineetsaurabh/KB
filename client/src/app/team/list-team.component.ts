@@ -77,7 +77,7 @@ export class ListTeamComponent extends ListComponent implements OnInit {
     onDeleteTeam(team: Team) {
         let dialogRef: MatDialogRef<ConfirmDeleteComponent>;
         dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-            data: `Are you sure you want to delete user ${team.teamName}?`
+            data: `Are you sure you want to delete team ${team.teamName}?`
         });
         dialogRef.afterClosed().subscribe((ok: boolean) => {
             if (ok) {

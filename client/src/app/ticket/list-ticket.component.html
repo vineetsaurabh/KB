@@ -92,7 +92,11 @@
 
         <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.status}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.status">
+                    {{ticket.status.stateName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Assigned To">

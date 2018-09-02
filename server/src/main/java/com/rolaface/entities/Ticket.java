@@ -55,8 +55,8 @@ public class Ticket {
 	@Column
 	private String operation;
 
-	@Column
-	private String status;
+	@ManyToOne
+	private State status;
 
 	@ManyToOne
 	private User createdBy;
@@ -178,11 +178,11 @@ public class Ticket {
 		this.operation = operation;
 	}
 
-	public String getStatus() {
+	public State getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(State status) {
 		this.status = status;
 	}
 

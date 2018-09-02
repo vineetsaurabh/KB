@@ -116,6 +116,10 @@ import { AddPriorityTypeComponent } from './priority-type/add-priority-type.comp
 import { ListPriorityTypeComponent} from './priority-type/list-priority-type.component';
 import { EditPriorityTypeComponent } from './priority-type/edit-priority-type.component';
 import { PriorityTypeService } from './priority-type/priority-type.service';
+import { StateService } from './state/state.service';
+import { AddStateComponent } from './state/add-state.component';
+import { ListStateComponent } from './state/list-state.component';
+import { EditStateComponent } from './state/edit-state.component';
 
 @NgModule({
     declarations: [
@@ -135,6 +139,7 @@ import { PriorityTypeService } from './priority-type/priority-type.service';
         AddTeamComponent, ListTeamComponent, EditTeamComponent, AssignTeamComponent,
         AddTicketTypeComponent, ListTicketTypeComponent, EditTicketTypeComponent,
         AddPriorityTypeComponent, ListPriorityTypeComponent, EditPriorityTypeComponent,
+        AddStateComponent, ListStateComponent, EditStateComponent,
     ],
     imports: [
         BrowserModule,
@@ -196,7 +201,7 @@ import { PriorityTypeService } from './priority-type/priority-type.service';
         TicketService,
         CommentService,
         RoleService, TeamService,
-        TicketTypeService, PriorityTypeService,
+        TicketTypeService, PriorityTypeService, StateService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

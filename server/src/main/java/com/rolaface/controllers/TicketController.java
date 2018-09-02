@@ -30,6 +30,7 @@ import com.rolaface.entities.TicketSubscribe;
 import com.rolaface.entities.User;
 import com.rolaface.model.ContextUser;
 import com.rolaface.services.EmailService;
+import com.rolaface.services.StateService;
 import com.rolaface.services.TicketDocumentService;
 import com.rolaface.services.TicketSearchHistoryService;
 import com.rolaface.services.TicketService;
@@ -68,12 +69,16 @@ public class TicketController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private StateService stateService;
+
 	@PostMapping
 	public Ticket create(@RequestBody Ticket ticket) {
 		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userService.findById(contextUser.getUserId());
 		ticket.setCreatedBy(user);
 		ticket.setCreationDate(new Date());
+		ticket.setStatus(stateService.findFirstState());
 		Ticket newTicket = ticketService.save(ticket);
 
 		String name = "ROLA-" + String.format("%4s", String.valueOf(newTicket.getTicketId())).replace(' ', '0');
