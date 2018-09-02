@@ -55,14 +55,18 @@ public class TicketServiceImpl implements TicketService {
 			ticketToUpdate.setProduct(ticket.getProduct());
 			ticketToUpdate.setModule(ticket.getModule());
 			ticketToUpdate.setOperation(ticket.getOperation());
+			ticketToUpdate.setRatings(ticket.getRatings());
+
 			ticketToUpdate.setStatus(ticket.getStatus());
 			ticketToUpdate.setLastModifiedDate(ticket.getLastModifiedDate());
 			ticketToUpdate.setLastModifiedBy(ticket.getLastModifiedBy());
-			ticketToUpdate.setRatings(ticket.getRatings());
-
+			ticketToUpdate.setCreatedBy(ticket.getCreatedBy());
+			ticketToUpdate.setCreationDate(ticket.getCreationDate());
 			ticketToUpdate.setAssignedTo(ticket.getAssignedTo());
 			ticketToUpdate.setAssignedBy(ticket.getAssignedBy());
 			ticketToUpdate.setAssignedOn(ticket.getAssignedOn());
+			ticketToUpdate.setClosedBy(ticket.getClosedBy());
+			ticketToUpdate.setClosedOn(ticket.getClosedOn());
 			repository.save(ticketToUpdate);
 		}
 		return ticket;

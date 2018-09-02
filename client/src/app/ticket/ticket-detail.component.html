@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
 
 <div class="container col-md-8 my-2" fxLayout="column" fxLayoutGap="10px">
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+    <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
         <div fxLayoutAlign="start center">
             <mat-form-field>
                 <input matInput class="search-input" type="text" [(ngModel)]="ticket.name" />
@@ -14,7 +14,65 @@
             {{ticket.summary}}
         </div>
     </div>
-    <mat-divider></mat-divider>
+-->
+    <div class="ticket-name">
+        {{ticket.name}}
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+        <div *ngFor="let state of states; let i = index" class="state-card" fxLayout="row" fxLayoutAlign="center center">
+            <mat-card [class.current-state]="ticket.status && state.stateName == ticket.status.stateName">
+                <mat-card-header>
+                    <div *ngIf="i == 0">
+                        <div class="state-created-by">
+                            Created by {{ticket.createdBy.firstName}} {{ticket.createdBy.lastName}}
+                        </div>
+                        <div class="state-created-on">
+                            {{ticket.creationDate | amTimeAgo}}
+                        </div>
+                    </div>
+                    <div *ngIf="i == 1">
+                        <div class="state-created-by">
+                            {{ticket.assignedTo.firstName}} {{ticket.assignedTo.lastName}}
+                        </div>
+                        <div class="state-created-on">
+                            {{ticket.assignedOn | amTimeAgo}}
+                        </div>
+                        <div class="state-created-by" *ngIf="ticket.assignedBy">
+                            by {{ticket.assignedBy.firstName}} {{ticket.assignedBy.lastName}}
+                        </div>
+                    </div>
+                    <div *ngIf="i == states.length - 1 && ticket.closedBy != null">
+                            <div class="state-created-by">
+                                {{ticket.closedBy.firstName}} {{ticket.closedBy.lastName}}
+                            </div>
+                            <div class="state-created-on">
+                                {{ticket.closedOn | amTimeAgo}}
+                            </div>
+                        </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="state-name">
+                        {{state.stateName}}
+                    </div>
+                </mat-card-content>
+                <mat-card-actions></mat-card-actions>
+            </mat-card>
+            <div fxlayout="column" fxLayoutAlign="center">
+                <div *ngIf=" i < states.length - 1">
+                    <button (click)="promote()" [disabled]="ticket.assignedTo.userid != userid">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div *ngIf=" i < states.length - 2">
+                    <button (click)="demote()" [disabled]="ticket.createdBy.userid != userid && ticket.assignedTo.userid != userid">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div fxLayout="row" fxLayoutGap="20px">
         <div style="width:50%">
             <strong>Product:</strong>
@@ -26,34 +84,8 @@
         </div>
     </div>
     <mat-divider></mat-divider>
-    <div fxLayout="row" fxLayoutGap="20px">
-        <div style="width:50%">
-            <strong>Created By:</strong>
-            {{ticket.createdBy.firstName}} {{ticket.createdBy.lastName}}
-        </div>
-        <div style="width:50%">
-            <strong>Created On:</strong>
-            {{ticket.createdOn | amTimeAgo}}
-        </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div fxLayout="row" fxLayoutGap="20px">
-        <div style="width:50%">
-            <strong>Assigned To:</strong>
-            <div *ngIf="ticket.assignedTo">
-                {{ticket.assignedTo.firstName}} {{ticket.assignedTo.lastName}}
-            </div>
-        </div>
-        <div style="width:50%">
-            <strong>Assigned On:</strong>
-            {{ticket.assignedOn | amTimeAgo}}
-        </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div>
-        <!-- <app-read-more [text]="htmlDescription"></app-read-more> -->
-        <strong>Description:</strong>
-        {{ticket.description}}
+    <div class="error-description">
+        <app-read-more [text]="ticket.description"></app-read-more>
     </div>
     <mat-divider></mat-divider>
 
@@ -90,6 +122,7 @@
         </div>
     </div>
 
+    <!-- 
     <mat-divider></mat-divider>
     <div matTooltip="{{overallRatingTooltip}}" matTooltipPosition="before">
         Overall Rating :
@@ -105,6 +138,7 @@
             <i class="fa" [ngClass]="{'fa-star':(star==1),'fa-star-o':(star==0)}"></i>
         </a>
     </div>
+    -->
 </div>
 
 <list-comment [ticketId]="ticketId"></list-comment>

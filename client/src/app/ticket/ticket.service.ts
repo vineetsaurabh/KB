@@ -112,4 +112,8 @@ export class TicketService {
         return this.http.put<Ticket>(this.ticketUrl + "/assignticket", tickets, httpOptions);
     }
 
+    public closeTicket(ticket: Ticket) {
+        return this.http.put<Ticket>(this.ticketUrl + "/closeticket", ticket, httpOptions);
+    }
+
 }

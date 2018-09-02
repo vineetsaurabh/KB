@@ -10,10 +10,13 @@ import { TokenStorage } from '../login/token.storage';
 import { RolaguruUtils } from '../util/rolaguru.util';
 import { Rating } from './rating.model';
 import { User } from '../user/user.model';
+import { State } from '../state/state.model';
+import { StateService } from '../state/state.service';
 
 @Component({
     selector: 'ticket-detail',
-    templateUrl: './ticket-detail.component.html'
+    templateUrl: './ticket-detail.component.html',
+    styleUrls: ['./ticket-detail.component.css']
 })
 export class TicketDetailComponent implements OnInit {
 
@@ -27,7 +30,7 @@ export class TicketDetailComponent implements OnInit {
         product: '',
         module: '',
         operation: '',
-        status: '',
+        status: new State(),
         assignedTo: new User(),
         assignedBy: new User(),
         assignedOn: new Date(),
@@ -35,11 +38,12 @@ export class TicketDetailComponent implements OnInit {
         creationDate: new Date(),
         lastModifiedBy: new User(),
         lastModifiedDate: new Date(),
+        closedBy: new User(),
+        closedOn: new Date(),
         checked: false,
         ratings: new Set<Rating>(),
     };
     ticketId: string;
-    htmlDescription: string;
     rolaguruUtils = RolaguruUtils.getInstance();
 
     userid: string;
@@ -51,12 +55,15 @@ export class TicketDetailComponent implements OnInit {
     totalRating: number = 0;
     noOfRatings: number = 0;
 
+    states: State[];
+
     constructor(
         private http: HttpClient,
         private router: Router,
         private route: ActivatedRoute,
         private ticketService: TicketService,
         private toastService: ToastrService,
+        private stateService: StateService,
         private token: TokenStorage,
         private dialog: MatDialog) {
     }
@@ -72,16 +79,17 @@ export class TicketDetailComponent implements OnInit {
             this.getTicket();
             this.userid = this.token.getCurrentUserId();
         });
+        this.stateService.getStates().subscribe(data => {
+            this.states = data;
+        });
     }
 
     private getTicket() {
         this.ticketService.getTicket(this.ticketId).subscribe((ticket) => {
             this.ticket = ticket;
-            this.htmlDescription = ticket.description;
-
-            this.noOfRatings = Object.keys(this.ticket.ratings).length;
-            this.calculateRating();
-            this.calculateOverallRating();
+            //this.noOfRatings = Object.keys(this.ticket.ratings).length;
+            //this.calculateRating();
+            //this.calculateOverallRating();
         });
     }
 
@@ -195,6 +203,35 @@ export class TicketDetailComponent implements OnInit {
                 this.overallRatingStar = '2'.repeat(Math.floor(this.overallRating)) + '1' + '0'.repeat(4 - (Math.floor(this.overallRating)));
             }
         }
+    }
+
+    promote(): void {
+        let index = this.states.findIndex(state => state.stateId === this.ticket.status.stateId);
+        let nextState = this.states[index + 1];
+        this.ticket.status = nextState;
+        if (index == this.states.length - 2) {
+            this.ticketService.closeTicket(this.ticket)
+                .subscribe(res => {
+                    this.ticket = res;
+                    this.toastService.success(`Ticket ${this.ticket.name} has been closed`);
+                });
+        } else {
+            this.ticketService.updateTicket(this.ticket)
+                .subscribe(res => {
+                    this.toastService.success(`Ticket ${this.ticket.name} promoted to next state ${nextState.stateName}`);
+                });
+        }
+    }
+
+    demote(): void {
+        let index = this.states.findIndex(state => state.stateId === this.ticket.status.stateId);
+        let previousState = this.states[index - 1];
+        this.ticket.status = previousState;
+        this.ticketService.updateTicket(this.ticket)
+            .subscribe(res => {
+                this.ticket = res;
+                this.toastService.success(`Ticket ${this.ticket.name} demoted to previous state ${previousState.stateName}`);
+            });
     }
 
 }

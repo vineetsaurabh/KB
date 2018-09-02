@@ -82,6 +82,13 @@ public class Ticket {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastModifiedDate;
 
+	@ManyToOne
+	private User closedBy;
+
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date closedOn;
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ticket_id")
 	private Set<TicketDocument> files;
@@ -240,6 +247,22 @@ public class Ticket {
 
 	public void setLastModifiedBy(User lastModifiedBy) {
 		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public User getClosedBy() {
+		return closedBy;
+	}
+
+	public void setClosedBy(User closedBy) {
+		this.closedBy = closedBy;
+	}
+
+	public Date getClosedOn() {
+		return closedOn;
+	}
+
+	public void setClosedOn(Date closedOn) {
+		this.closedOn = closedOn;
 	}
 
 }

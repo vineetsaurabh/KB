@@ -1,6 +1,5 @@
 package com.rolaface.controllers;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +35,7 @@ import com.rolaface.services.TicketSearchHistoryService;
 import com.rolaface.services.TicketService;
 import com.rolaface.services.TicketSubscribeService;
 import com.rolaface.services.UserService;
+import com.rolaface.util.StringUtils;
 
 @RestController
 @RequestMapping({ "/ticket" })
@@ -50,6 +50,14 @@ public class TicketController {
 	private final static String TICKET_FILE_UPLOADED_MESSAGE = "A file has been uploaded by %s to your subscribed ticket - %s";
 
 	private final static String TICKET_FILE_DELETED_MESSAGE = "A file has been deleted by %s from your subscribed ticket - %s";
+
+	private final static String TICKET_ASSIGN_SUBJECT = "You have been assigned ticket(s)";
+
+	private final static String TICKET_ASSIGN_MESSAGE = "You have been assigned ticket(s) \nTicket Name - %s \nAssigned by - %s";
+
+	private final static String TICKET_CLOSE_SUBJECT = "A ticket has been close";
+
+	private final static String TICKET_CLOSE_MESSAGE = "\nTicket Name - %s has been closed by %s";
 
 	@Autowired
 	private TicketService ticketService;
@@ -79,6 +87,10 @@ public class TicketController {
 		ticket.setCreatedBy(user);
 		ticket.setCreationDate(new Date());
 		ticket.setStatus(stateService.findFirstState());
+		if (ticket.getAssignedTo() != null) {
+			ticket.setAssignedOn(new Date());
+			ticket.setAssignedBy(user);
+		}
 		Ticket newTicket = ticketService.save(ticket);
 
 		String name = "ROLA-" + String.format("%4s", String.valueOf(newTicket.getTicketId())).replace(' ', '0');
@@ -214,16 +226,35 @@ public class TicketController {
 
 	@Transactional
 	@PutMapping(value = "/assignticket")
-	public void assignTickets(@RequestBody Collection<Ticket> tickets) {
+	public void assignTickets(@RequestBody List<Ticket> tickets) {
+		if (tickets.get(0).getAssignedTo() == null) {
+			return;
+		}
 		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userService.findById(contextUser.getUserId());
+		String ticketNames = StringUtils.EMPTY_STRING;
 		for (Ticket ticket : tickets) {
-			ticket.setLastModifiedDate(new Date());
-			ticket.setLastModifiedBy(user);
+			ticket.setAssignedOn(new Date());
+			ticket.setAssignedBy(user);
 			ticket = ticketService.update(ticket);
+			ticketNames = ticketNames + ticket.getName() + ", ";
 		}
-		// TODO: Mail to assignee
-		// TODO: Appropriate return
+		String message = String.format(TICKET_ASSIGN_MESSAGE, ticketNames,
+				user.getFirstName() + " " + user.getLastName());
+		emailService.sendMail(tickets.get(0).getAssignedTo().getEmail(), TICKET_ASSIGN_SUBJECT, message);
+	}
+
+	@PutMapping(value = "/closeticket")
+	public Ticket closeTicket(@RequestBody Ticket ticket) {
+		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userService.findById(contextUser.getUserId());
+		ticket.setClosedOn(new Date());
+		ticket.setClosedBy(user);
+		ticket = ticketService.update(ticket);
+		String message = String.format(TICKET_CLOSE_MESSAGE, ticket.getName(),
+				user.getFirstName() + " " + user.getLastName());
+		emailService.sendMail(ticket.getAssignedTo().getEmail(), TICKET_CLOSE_SUBJECT, message);
+		return ticket;
 	}
 
 }
