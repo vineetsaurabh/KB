@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,8 +29,8 @@ public class PriorityType implements Comparable<PriorityType> {
 	@Column
 	private String sla;
 
-	@Column
-	private String escalateTo;
+	@ManyToOne
+	private User escalateTo;
 
 	@Column
 	private int timeToResolve;
@@ -74,11 +75,11 @@ public class PriorityType implements Comparable<PriorityType> {
 		this.sla = sla;
 	}
 
-	public String getEscalateTo() {
+	public User getEscalateTo() {
 		return escalateTo;
 	}
 
-	public void setEscalateTo(String escalateTo) {
+	public void setEscalateTo(User escalateTo) {
 		this.escalateTo = escalateTo;
 	}
 

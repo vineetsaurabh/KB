@@ -19,7 +19,7 @@ import { ListComponent } from '../common/list.component';
 export class ListPriorityTypeComponent extends ListComponent implements OnInit {
 
     priorityTypes: PriorityType[];
-    allColumns = ['Checkbox', 'Name', 'Description', 'Default',  'SLA', 'Escalate To', 'Resolve Time', 'Actions',];
+    allColumns = ['Checkbox', 'Name', 'Description', 'Default', 'SLA', 'Escalate To', 'Resolve Time', 'Actions',];
     displayedColumns = ['Checkbox', 'Name', 'Description', 'Default', 'SLA', 'Escalate To', 'Actions'];
     dataSource: MatTableDataSource<PriorityType>;
 
@@ -59,8 +59,8 @@ export class ListPriorityTypeComponent extends ListComponent implements OnInit {
     public addPriorityType(): Observable<boolean> {
         let dialogRef: MatDialogRef<AddPriorityTypeComponent>;
         dialogRef = this.dialog.open(AddPriorityTypeComponent, {
-            width: '600px',
-            height: '320px',
+            width: '900px',
+            height: '570px',
         });
         return dialogRef.afterClosed();
     }
@@ -69,7 +69,8 @@ export class ListPriorityTypeComponent extends ListComponent implements OnInit {
         let dialogRef: MatDialogRef<EditPriorityTypeComponent>;
         dialogRef = this.dialog.open(EditPriorityTypeComponent, {
             data: id,
-            width: '400px',
+            width: '900px',
+            height: '610px',
         });
         return dialogRef.afterClosed();
     }

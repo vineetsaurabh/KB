@@ -1,3 +1,4 @@
+import { User } from "../user/user.model";
 
 export class PriorityType {
     priorityTypeid: string;
@@ -5,7 +6,7 @@ export class PriorityType {
     description: string;
     defaultPriorityType: boolean;
     sla: string;
-    escalateTo: string;
+    escalateTo: User;
     timeToResolve: number;
     checked: boolean;
 }

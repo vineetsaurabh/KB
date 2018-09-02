@@ -14,7 +14,7 @@
         <div class="form-group" [formGroup]="userNameForm">
             <mat-form-field>
                 <input matInput placeholder="SPOC" formControlName="userNameGroup" [matAutocomplete]="autoGroup">
-                <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn" (optionSelected)='setSpoc($event.option.value)'>
+                <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn" (optionSelected)='setEscalatedTo($event.option.value)'>
                     <mat-optgroup *ngFor="let group of userNameGroupOptions | async" [label]="group.letter">
                         <mat-option *ngFor="let user of group.assignees" [value]="user">
                             {{user.firstName}} {{user.lastName}}
