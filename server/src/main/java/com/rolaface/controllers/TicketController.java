@@ -27,12 +27,14 @@ import com.rolaface.entities.Ticket;
 import com.rolaface.entities.TicketDocument;
 import com.rolaface.entities.TicketSearchHistory;
 import com.rolaface.entities.TicketSubscribe;
+import com.rolaface.entities.User;
 import com.rolaface.model.ContextUser;
 import com.rolaface.services.EmailService;
 import com.rolaface.services.TicketDocumentService;
 import com.rolaface.services.TicketSearchHistoryService;
 import com.rolaface.services.TicketService;
 import com.rolaface.services.TicketSubscribeService;
+import com.rolaface.services.UserService;
 
 @RestController
 @RequestMapping({ "/ticket" })
@@ -63,10 +65,14 @@ public class TicketController {
 	@Autowired
 	private TicketSearchHistoryService ticketSearchHistoryService;
 
+	@Autowired
+	private UserService userService;
+
 	@PostMapping
 	public Ticket create(@RequestBody Ticket ticket) {
-		ContextUser user = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		ticket.setCreatedBy(user.getUsername());
+		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userService.findById(contextUser.getUserId());
+		ticket.setCreatedBy(user);
 		ticket.setCreationDate(new Date());
 		Ticket newTicket = ticketService.save(ticket);
 
@@ -98,9 +104,10 @@ public class TicketController {
 
 	@PutMapping(path = { "/{id}" })
 	public Ticket update(@RequestBody Ticket ticket) {
-		ContextUser user = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userService.findById(contextUser.getUserId());
 		ticket.setLastModifiedDate(new Date());
-		ticket.setLastModifiedBy(user.getUsername());
+		ticket.setLastModifiedBy(user);
 		ticket = ticketService.update(ticket);
 		if (ticket != null) {
 			notifySubscription(ticket.getTicketId(),
@@ -203,10 +210,11 @@ public class TicketController {
 	@Transactional
 	@PutMapping(value = "/assignticket")
 	public void assignTickets(@RequestBody Collection<Ticket> tickets) {
-		ContextUser user = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userService.findById(contextUser.getUserId());
 		for (Ticket ticket : tickets) {
 			ticket.setLastModifiedDate(new Date());
-			ticket.setLastModifiedBy(user.getUsername());
+			ticket.setLastModifiedBy(user);
 			ticket = ticketService.update(ticket);
 		}
 		// TODO: Mail to assignee

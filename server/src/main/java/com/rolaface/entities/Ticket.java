@@ -59,52 +59,24 @@ public class Ticket {
 	private String status;
 
 	@ManyToOne
-	private User assignedTo;
-
-	public User getAssignedTo() {
-		return assignedTo;
-	}
-
-	public void setAssignedTo(User assignedTo) {
-		this.assignedTo = assignedTo;
-	}
-
-	public String getAssignedBy() {
-		return assignedBy;
-	}
-
-	public void setAssignedBy(String assignedBy) {
-		this.assignedBy = assignedBy;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
-	}
-
-	@Column
-	private String assignedBy;
-
-	@Column
-	private String createdBy;
+	private User createdBy;
 
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
+	@ManyToOne
+	private User assignedTo;
+
+	@ManyToOne
+	private User assignedBy;
+
 	@Column
-	private String lastModifiedBy;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date assignedOn;
+
+	@ManyToOne
+	private User lastModifiedBy;
 
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -133,10 +105,6 @@ public class Ticket {
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
-
-	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date assignedOn;
 
 	public int getTicketId() {
 		return ticketId;
@@ -240,6 +208,38 @@ public class Ticket {
 
 	public void setRatings(Set<Rating> ratings) {
 		this.ratings = ratings;
+	}
+
+	public User getAssignedTo() {
+		return assignedTo;
+	}
+
+	public void setAssignedTo(User assignedTo) {
+		this.assignedTo = assignedTo;
+	}
+
+	public User getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public User getAssignedBy() {
+		return assignedBy;
+	}
+
+	public void setAssignedBy(User assignedBy) {
+		this.assignedBy = assignedBy;
+	}
+
+	public User getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(User lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
 
 }

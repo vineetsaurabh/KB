@@ -29,7 +29,7 @@
     <div fxLayout="row" fxLayoutGap="20px">
         <div style="width:50%">
             <strong>Created By:</strong>
-            {{ticket.createdBy}}
+            {{ticket.createdBy.firstName}} {{ticket.createdBy.lastName}}
         </div>
         <div style="width:50%">
             <strong>Created On:</strong>
@@ -40,7 +40,9 @@
     <div fxLayout="row" fxLayoutGap="20px">
         <div style="width:50%">
             <strong>Assigned To:</strong>
-            {{ticket.assignedTo}}
+            <div *ngIf="ticket.assignedTo">
+                {{ticket.assignedTo.firstName}} {{ticket.assignedTo.lastName}}
+            </div>
         </div>
         <div style="width:50%">
             <strong>Assigned On:</strong>

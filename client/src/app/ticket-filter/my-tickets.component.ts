@@ -30,10 +30,10 @@ export class MyTicketsComponent extends ListTicketComponent {
     };
 
     getMyTickets() {
-        const user = this.token.getCurrentUser();
+        const userId = this.token.getCurrentUserId();
         this.ticketService.getAllTickets()
             .subscribe(data => {
-                data = data.filter(t => t.createdBy == user);
+                data = data.filter(t => t.createdBy && t.createdBy.userid == userId);
                 this.dataSource = new MatTableDataSource(data);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;

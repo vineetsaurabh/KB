@@ -9,6 +9,7 @@ import { TicketType } from '../ticket-type/ticket-type.model';
 import { TicketTypeService } from '../ticket-type/ticket-type.service';
 import { PriorityType } from '../priority-type/priority-type.model';
 import { PriorityTypeService } from '../priority-type/priority-type.service';
+import { User } from '../user/user.model';
 
 @Injectable()
 @Component({
@@ -27,12 +28,12 @@ export class EditTicketComponent implements OnInit {
         module: '',
         operation: '',
         status: '',
-        assignedTo: '',
-        assignedBy: '',
+        assignedTo: new User(),
+        assignedBy: new User(),
         assignedOn: new Date(),
-        createdBy: '',
+        createdBy: new User(),
         creationDate: new Date(),
-        lastModifiedBy: '',
+        lastModifiedBy: new User(),
         lastModifiedDate: new Date(),
         checked: false,
         ratings: new Set<Rating>(),

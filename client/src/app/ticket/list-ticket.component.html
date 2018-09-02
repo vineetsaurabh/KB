@@ -106,7 +106,11 @@
 
         <ng-container matColumnDef="Assigned By">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned By </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.assignedBy}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.assignedBy">
+                    {{ticket.assignedBy.firstName}} {{ticket.assignedBy.lastName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Assigned On">
@@ -116,7 +120,11 @@
 
         <ng-container matColumnDef="Created By">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Created By </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.createdBy}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.createdBy">
+                    {{ticket.createdBy.firstName}} {{ticket.createdBy.lastName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Created On">
@@ -126,7 +134,11 @@
 
         <ng-container matColumnDef="Last Modified By">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified By </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.lastModifiedBy}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.lastModifiedBy">
+                    {{ticket.lastModifiedBy.firstName}} {{ticket.lastModifiedBy.lastName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Last Modified On">
