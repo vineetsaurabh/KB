@@ -93,8 +93,13 @@
         <ng-container matColumnDef="Status">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
             <mat-cell *matCellDef="let ticket">
-                <div *ngIf="ticket.status">
-                    {{ticket.status.stateName}}
+                <div fxLayout="column">
+                    <div *ngIf="ticket.status">
+                        {{ticket.status.stateName}}
+                    </div>
+                    <div *ngIf="ticket.status">
+                        <small>({{ticket.statusLabel}})</small>
+                    </div>
                 </div>
             </mat-cell>
         </ng-container>

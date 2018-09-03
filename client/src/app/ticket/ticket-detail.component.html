@@ -55,6 +55,9 @@
                     <div class="state-name">
                         {{state.stateName}}
                     </div>
+                    <div class="state-label" *ngIf="state.stateName == ticket.status.stateName">
+                        {{ticket.statusLabel}}
+                    </div>
                 </mat-card-content>
                 <mat-card-actions></mat-card-actions>
             </mat-card>

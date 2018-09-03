@@ -58,6 +58,9 @@ public class Ticket {
 	@ManyToOne
 	private State status;
 
+	@Column
+	private String statusLabel;
+
 	@ManyToOne
 	private User createdBy;
 
@@ -191,6 +194,14 @@ public class Ticket {
 
 	public void setStatus(State status) {
 		this.status = status;
+	}
+
+	public String getStatusLabel() {
+		return statusLabel;
+	}
+
+	public void setStatusLabel(String statusLabel) {
+		this.statusLabel = statusLabel;
 	}
 
 	public Date getAssignedOn() {

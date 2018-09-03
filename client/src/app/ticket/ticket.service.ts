@@ -54,7 +54,7 @@ export class TicketService {
 
     deleteTickets(ticketIds: string[]) {
         let params = new HttpParams();
-        params = params.append('ticketIds', ticketIds.join(","));
+        params = params.append('ticketids', ticketIds.join(","));
         return this.http.get<boolean>(this.ticketUrl + "/deletetickets", { params: params });
     }
 
@@ -68,13 +68,13 @@ export class TicketService {
 
     public subscribeTickets(ticketIds: string) {
         let params = new HttpParams();
-        params = params.append('ticketIds', ticketIds);
+        params = params.append('ticketids', ticketIds);
         return this.http.get<number>(this.ticketSubscribeUrl + "/subscribetickets", { params: params });
     }
 
     public unSubscribeTickets(ticketIds: string) {
         let params = new HttpParams();
-        params = params.append('ticketIds', ticketIds);
+        params = params.append('ticketids', ticketIds);
         return this.http.get<number>(this.ticketSubscribeUrl + "/unsubscribetickets", { params: params });
     }
 

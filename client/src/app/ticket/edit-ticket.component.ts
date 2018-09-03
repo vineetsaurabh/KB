@@ -29,6 +29,7 @@ export class EditTicketComponent implements OnInit {
         module: '',
         operation: '',
         status: new State(),
+        statusLabel: '',
         assignedTo: new User(),
         assignedBy: new User(),
         assignedOn: new Date(),

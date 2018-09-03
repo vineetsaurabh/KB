@@ -58,6 +58,7 @@ public class TicketServiceImpl implements TicketService {
 			ticketToUpdate.setRatings(ticket.getRatings());
 
 			ticketToUpdate.setStatus(ticket.getStatus());
+			ticketToUpdate.setStatusLabel(ticket.getStatusLabel());
 			ticketToUpdate.setLastModifiedDate(ticket.getLastModifiedDate());
 			ticketToUpdate.setLastModifiedBy(ticket.getLastModifiedBy());
 			ticketToUpdate.setCreatedBy(ticket.getCreatedBy());

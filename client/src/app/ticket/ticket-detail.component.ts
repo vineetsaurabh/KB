@@ -31,6 +31,7 @@ export class TicketDetailComponent implements OnInit {
         module: '',
         operation: '',
         status: new State(),
+        statusLabel: '',
         assignedTo: new User(),
         assignedBy: new User(),
         assignedOn: new Date(),
@@ -208,6 +209,7 @@ export class TicketDetailComponent implements OnInit {
     promote(): void {
         let index = this.states.findIndex(state => state.stateId === this.ticket.status.stateId);
         let nextState = this.states[index + 1];
+        this.ticket.statusLabel = this.ticket.status.promoteLabel;
         this.ticket.status = nextState;
         if (index == this.states.length - 2) {
             this.ticketService.closeTicket(this.ticket)
@@ -226,6 +228,7 @@ export class TicketDetailComponent implements OnInit {
     demote(): void {
         let index = this.states.findIndex(state => state.stateId === this.ticket.status.stateId);
         let previousState = this.states[index - 1];
+        this.ticket.statusLabel = this.ticket.status.demoteLabel;
         this.ticket.status = previousState;
         this.ticketService.updateTicket(this.ticket)
             .subscribe(res => {

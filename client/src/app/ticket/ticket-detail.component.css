@@ -24,6 +24,10 @@
     font-size: 18px;
     text-align: center;
 }
+.state-label {
+    color: red;
+    font-size: 16px;
+}
 button {
     background: transparent;
     border: none;
