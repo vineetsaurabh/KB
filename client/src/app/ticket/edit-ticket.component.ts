@@ -11,6 +11,8 @@ import { PriorityType } from '../priority-type/priority-type.model';
 import { PriorityTypeService } from '../priority-type/priority-type.service';
 import { User } from '../user/user.model';
 import { State } from '../state/state.model';
+import { Product } from "../product/product.model";
+import { Module } from "../module/module.model";
 
 @Injectable()
 @Component({
@@ -25,8 +27,8 @@ export class EditTicketComponent implements OnInit {
         summary: '',
         description: '',
         priority: '',
-        product: '',
-        module: '',
+        product: new Product(),
+        module: new Module(),
         operation: '',
         status: new State(),
         statusLabel: '',

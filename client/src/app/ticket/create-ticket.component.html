@@ -3,61 +3,77 @@
     <form #ticketForm="ngForm" (ngSubmit)="createTicket(ticketForm)" ngNativeValidate>
         <div class="form-group">
             <mat-form-field>
-                <mat-select placeholder="Choose Ticket Type" [(ngModel)]="ticket.type" name="type" id="type">
-                    <mat-option *ngFor="let ticketType of ticketTypes" [value]="ticketType.ticketTypeName">
-                        {{ticketType.ticketTypeName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field>
                 <input matInput [(ngModel)]="ticket.summary" name="summary" id="summary" #summary="ngModel" placeholder="Summary">
             </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <div class="form-group" fxLayoutAlign="start">
+                <mat-form-field>
+                    <mat-select placeholder="Choose Ticket Type" [(ngModel)]="ticket.type" name="type" id="type">
+                        <mat-option *ngFor="let ticketType of ticketTypes" [value]="ticketType.ticketTypeName">
+                            {{ticketType.ticketTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="fill-remaining-space"></div>
+            <div class="form-group" fxLayoutAlign="center">
+                <mat-form-field>
+                    <mat-select placeholder="Choose Priority" [(ngModel)]="ticket.priority" name="priority" id="priority">
+                        <mat-option *ngFor="let priorityType of priorityTypes" [value]="priorityType.priorityTypeName">
+                            {{priorityType.priorityTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="fill-remaining-space"></div>
+            <div class="form-group" fxLayoutAlign="end" [formGroup]="userNameForm">
+                    <mat-form-field>
+                        <input matInput placeholder="Assign To" formControlName="userNameGroup" [matAutocomplete]="autoGroup">
+                        <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn" (optionSelected)='setAssignee($event.option.value)'>
+                            <mat-optgroup *ngFor="let group of userNameGroupOptions | async" [label]="group.letter">
+                                <mat-option *ngFor="let user of group.assignees" [value]="user">
+                                    {{user.firstName}} {{user.lastName}}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+        </div>
+        <div fxLayout="row">
+            <div class="form-group" fxLayoutAlign="start">
+                <mat-form-field>
+                    <mat-select placeholder="Choose Product" [(ngModel)]="ticket.product" name="product" id="product">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let product of products" [value]="product">
+                            {{product.productName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="fill-remaining-space"></div>
+            <div class="form-group" fxLayoutAlign="center" *ngIf="ticket.product">
+                <mat-form-field>
+                    <mat-select placeholder="Choose Module" [(ngModel)]="ticket.module" name="module" id="type">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let module of ticket.product.modules" [value]="module">
+                            {{module.moduleName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="fill-remaining-space"></div>
+            <div class="form-group" fxLayoutAlign="end">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="ticket.operation" name="operation" id="operation" placeholder="Operation">
+                </mat-form-field>
+            </div>
         </div>
         <div class="form-group">
             <div class="editor block">
                 <app-ngx-editor minHeight="50px" [(ngModel)]="ticket.description" name="description" [placeholder]="'Description'"></app-ngx-editor>
             </div>
         </div>
-        <div class="form-group">
-            <mat-form-field>
-                <mat-select placeholder="Choose Priority" [(ngModel)]="ticket.priority" name="priority" id="priority">
-                    <mat-option *ngFor="let priorityType of priorityTypes" [value]="priorityType.priorityTypeName">
-                        {{priorityType.priorityTypeName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field>
-                <input matInput [(ngModel)]="ticket.product" name="product" id="product" placeholder="Product">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field>
-                <input matInput [(ngModel)]="ticket.module" name="module" id="module" placeholder="Module">
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field>
-                <input matInput [(ngModel)]="ticket.operation" name="operation" id="operation" placeholder="Operation">
-            </mat-form-field>
-        </div>
-
-        <div class="form-group" [formGroup]="userNameForm">
-            <mat-form-field>
-                <input matInput placeholder="Assign To" formControlName="userNameGroup" [matAutocomplete]="autoGroup">
-                <mat-autocomplete #autoGroup="matAutocomplete"  [displayWith]="displayFn" (optionSelected)='setAssignee($event.option.value)'>
-                    <mat-optgroup *ngFor="let group of userNameGroupOptions | async" [label]="group.letter">
-                        <mat-option *ngFor="let user of group.assignees" [value]="user">
-                            {{user.firstName}} {{user.lastName}}
-                        </mat-option>
-                    </mat-optgroup>
-                </mat-autocomplete>
-            </mat-form-field>
-        </div>
-
         <div class="text-center">
             <button mat-raised-button color="primary" [disabled]="!ticketForm.valid">
                 Submit

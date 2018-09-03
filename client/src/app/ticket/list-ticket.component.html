@@ -77,12 +77,20 @@
 
         <ng-container matColumnDef="Product">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Product </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.product}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.product">
+                    {{ticket.product.productName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Module">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Module </mat-header-cell>
-            <mat-cell *matCellDef="let ticket"> {{ticket.module}} </mat-cell>
+            <mat-cell *matCellDef="let ticket">
+                <div *ngIf="ticket.module">
+                    {{ticket.module.moduleName}}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Operation">
@@ -97,7 +105,7 @@
                     <div *ngIf="ticket.status">
                         {{ticket.status.stateName}}
                     </div>
-                    <div *ngIf="ticket.status">
+                    <div *ngIf="ticket.status && ticket.statusLabel">
                         <small>({{ticket.statusLabel}})</small>
                     </div>
                 </div>

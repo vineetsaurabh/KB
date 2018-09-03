@@ -37,6 +37,12 @@ import { EditPriorityTypeComponent } from './priority-type/edit-priority-type.co
 import { AddStateComponent } from './state/add-state.component';
 import { ListStateComponent } from './state/list-state.component';
 import { EditStateComponent } from './state/edit-state.component';
+import { AddProductComponent } from './product/add-product.component';
+import { ListProductComponent } from './product/list-product.component';
+import { EditProductComponent } from './product/edit-product.component';
+import { AddModuleComponent } from './module/add-module.component';
+import { ListModuleComponent } from './module/list-module.component';
+import { EditModuleComponent } from './module/edit-module.component';
 
 const routes: Routes = [
     {
@@ -216,6 +222,42 @@ const routes: Routes = [
             {
                 path: ':id',
                 component: EditStateComponent
+            },
+            {
+                path: '',
+                component: TableConfiguratorComponent
+            }
+        ]
+    },
+    {
+        path: 'addProduct',
+        component: AddProductComponent
+    },
+    {
+        path: 'listProducts',
+        component: ListProductComponent,
+        children: [
+            {
+                path: ':id',
+                component: EditProductComponent
+            },
+            {
+                path: '',
+                component: TableConfiguratorComponent
+            }
+        ]
+    },
+    {
+        path: 'addModule',
+        component: AddModuleComponent
+    },
+    {
+        path: 'listModules',
+        component: ListModuleComponent,
+        children: [
+            {
+                path: ':id',
+                component: EditModuleComponent
             },
             {
                 path: '',

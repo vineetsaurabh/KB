@@ -120,6 +120,14 @@ import { StateService } from './state/state.service';
 import { AddStateComponent } from './state/add-state.component';
 import { ListStateComponent } from './state/list-state.component';
 import { EditStateComponent } from './state/edit-state.component';
+import { ProductService } from './product/product.service';
+import { AddProductComponent } from './product/add-product.component';
+import { ListProductComponent } from './product/list-product.component';
+import { EditProductComponent } from './product/edit-product.component';
+import { ModuleService } from './module/module.service';
+import { AddModuleComponent } from './module/add-module.component';
+import { ListModuleComponent } from './module/list-module.component';
+import { EditModuleComponent } from './module/edit-module.component';
 
 @NgModule({
     declarations: [
@@ -140,6 +148,8 @@ import { EditStateComponent } from './state/edit-state.component';
         AddTicketTypeComponent, ListTicketTypeComponent, EditTicketTypeComponent,
         AddPriorityTypeComponent, ListPriorityTypeComponent, EditPriorityTypeComponent,
         AddStateComponent, ListStateComponent, EditStateComponent,
+        AddProductComponent, ListProductComponent, EditProductComponent,
+        AddModuleComponent, ListModuleComponent, EditModuleComponent,
     ],
     imports: [
         BrowserModule,
@@ -201,6 +211,7 @@ import { EditStateComponent } from './state/edit-state.component';
         TicketService,
         CommentService,
         RoleService, TeamService,
+        ProductService, ModuleService,
         TicketTypeService, PriorityTypeService, StateService,
         {
             provide: HTTP_INTERCEPTORS,

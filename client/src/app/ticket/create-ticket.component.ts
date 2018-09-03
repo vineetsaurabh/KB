@@ -12,6 +12,9 @@ import { PriorityType } from '../priority-type/priority-type.model';
 import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
 import { SelectUserComponent } from '../common/select-user-component';
+import { Product } from '../product/product.model';
+import { ProductService } from '../product/product.service';
+import { Module } from '../module/module.model';
 
 @Component({
     templateUrl: './create-ticket.component.html'
@@ -20,14 +23,15 @@ export class CreateTicketComponent extends SelectUserComponent {
 
     ticket: Ticket = new Ticket();
     ticketTypes: TicketType[];
-    defaultTicketType: TicketType;
+    products: Product[];
+    modules: Module[];
     priorityTypes: PriorityType[];
-    defaultPriorityType: PriorityType;
 
     constructor(
         protected fb: FormBuilder,
         protected userService: UserService,
         private ticketService: TicketService,
+        private productService: ProductService,
         private toastService: ToastrService,
         private ticketTypeService: TicketTypeService,
         private priorityTypeService: PriorityTypeService,
@@ -41,11 +45,14 @@ export class CreateTicketComponent extends SelectUserComponent {
                 this.ticketTypes = data;
                 this.ticket.type = data.filter(_ => _.defaultTicketType)[0].ticketTypeName;
             });
-
         this.priorityTypeService.getPriorityTypes()
             .subscribe(data => {
                 this.priorityTypes = data;
                 this.ticket.priority = data.filter(_ => _.defaultPriorityType)[0].priorityTypeName;
+            });
+        this.productService.getProducts()
+            .subscribe(data => {
+                this.products = data;
             });
         super.ngOnInit();
     }

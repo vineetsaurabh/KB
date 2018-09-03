@@ -46,11 +46,11 @@ public class Ticket {
 	@Column
 	private String priority;
 
-	@Column
-	private String product;
+	@ManyToOne
+	private Product product;
 
-	@Column
-	private String module;
+	@ManyToOne
+	private Module module;
 
 	@Column
 	private String operation;
@@ -164,19 +164,19 @@ public class Ticket {
 		this.priority = priority;
 	}
 
-	public String getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(String product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
-	public String getModule() {
+	public Module getModule() {
 		return module;
 	}
 
-	public void setModule(String module) {
+	public void setModule(Module module) {
 		this.module = module;
 	}
 

@@ -1,6 +1,8 @@
 import { User } from "../user/user.model";
 import { Rating } from "./rating.model"
 import { State } from "../state/state.model";
+import { Product } from "../product/product.model";
+import { Module } from "../module/module.model";
 
 export class Ticket {
     ticketId: string;
@@ -9,8 +11,8 @@ export class Ticket {
     summary: string;
     description: string;
     priority: string;
-    product: string;
-    module: string;
+    product: Product;
+    module: Module;
     operation: string;
     status: State;
     statusLabel: string;

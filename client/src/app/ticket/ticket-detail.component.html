@@ -43,13 +43,13 @@
                         </div>
                     </div>
                     <div *ngIf="i == states.length - 1 && ticket.closedBy != null">
-                            <div class="state-created-by">
-                                {{ticket.closedBy.firstName}} {{ticket.closedBy.lastName}}
-                            </div>
-                            <div class="state-created-on">
-                                {{ticket.closedOn | amTimeAgo}}
-                            </div>
+                        <div class="state-created-by">
+                            {{ticket.closedBy.firstName}} {{ticket.closedBy.lastName}}
                         </div>
+                        <div class="state-created-on">
+                            {{ticket.closedOn | amTimeAgo}}
+                        </div>
+                    </div>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="state-name">
@@ -79,11 +79,15 @@
     <div fxLayout="row" fxLayoutGap="20px">
         <div style="width:50%">
             <strong>Product:</strong>
-            {{ticket.product}}
+            <div *ngIf="ticket.product">
+                {{ticket.product.productName}}
+            </div>
         </div>
         <div style="width:50%">
             <strong>Module:</strong>
-            {{ticket.module}}
+            <div *ngIf="ticket.module">
+                {{ticket.module.moduleName}}
+            </div>
         </div>
     </div>
     <mat-divider></mat-divider>

@@ -12,6 +12,8 @@ import { Rating } from './rating.model';
 import { User } from '../user/user.model';
 import { State } from '../state/state.model';
 import { StateService } from '../state/state.service';
+import { Product } from "../product/product.model";
+import { Module } from "../module/module.model";
 
 @Component({
     selector: 'ticket-detail',
@@ -27,8 +29,8 @@ export class TicketDetailComponent implements OnInit {
         summary: '',
         description: '',
         priority: '',
-        product: '',
-        module: '',
+        product: new Product(),
+        module: new Module(),
         operation: '',
         status: new State(),
         statusLabel: '',
