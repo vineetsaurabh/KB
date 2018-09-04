@@ -34,6 +34,9 @@ export class AssignTicketComponent {
 
     ngOnInit() {
         this.getUsers();
+        if (this.tickets.length == 1) {
+            this.selectedUser = this.tickets[0].assignedTo;
+        }
     }
 
     getUsers() {

@@ -87,6 +87,13 @@ public class TicketController {
 		ticket.setCreatedBy(user);
 		ticket.setCreationDate(new Date());
 		ticket.setStatus(stateService.findFirstState());
+		if (ticket.getAssignedTo() == null) {
+			if (ticket.getModule() != null) {
+				ticket.setAssignedTo(ticket.getModule().getModuleOwner());
+			} else if (ticket.getProduct() != null) {
+				ticket.setAssignedTo(ticket.getProduct().getProductOwner());
+			}
+		}
 		if (ticket.getAssignedTo() != null) {
 			ticket.setAssignedOn(new Date());
 			ticket.setAssignedBy(user);

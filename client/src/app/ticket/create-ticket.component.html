@@ -1,9 +1,18 @@
 <div class="col-md-10 container">
-    <h2 class="text-center" class="add-item">Create Ticket</h2>
+    <div fxLayout="row">
+        <div class="fill-remaining-space"></div>
+        <h2 class="text-center" class="add-item" fxLayoutAlign="center">Create Ticket</h2>
+        <div class="fill-remaining-space"></div>
+        <div fxLayoutAlign="end center">
+            <button class="close" mat-dialog-close>
+                <i class="fa fa-remove" matTooltip="Close"></i>
+            </button>
+        </div>
+    </div>
     <form #ticketForm="ngForm" (ngSubmit)="createTicket(ticketForm)" ngNativeValidate>
         <div class="form-group">
             <mat-form-field>
-                <input matInput [(ngModel)]="ticket.summary" name="summary" id="summary" #summary="ngModel" placeholder="Summary">
+                <input matInput rquired [(ngModel)]="ticket.summary" name="summary" id="summary" #summary="ngModel" placeholder="Summary">
             </mat-form-field>
         </div>
         <div fxLayout="row">
@@ -27,8 +36,14 @@
                 </mat-form-field>
             </div>
             <div class="fill-remaining-space"></div>
-            <div class="form-group" fxLayoutAlign="end" [formGroup]="userNameForm">
-                    <mat-form-field>
+            <div fxLayout="row" fxLayoutGap="10px">
+                <div fxLayoutAlign="center center">
+                    <mat-checkbox [(ngModel)]="autoAssign" name="autoAssign" matTooltip="Auto Assign" matTooltipPosition="above" color="primary">
+                        <mat-hint *ngIf="autoAssign">Un-check this to assign manually</mat-hint>
+                    </mat-checkbox>
+                </div>
+                <div class="form-group" fxLayoutAlign="end" [formGroup]="userNameForm">
+                    <mat-form-field *ngIf="!autoAssign">
                         <input matInput placeholder="Assign To" formControlName="userNameGroup" [matAutocomplete]="autoGroup">
                         <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn" (optionSelected)='setAssignee($event.option.value)'>
                             <mat-optgroup *ngFor="let group of userNameGroupOptions | async" [label]="group.letter">
@@ -39,6 +54,7 @@
                         </mat-autocomplete>
                     </mat-form-field>
                 </div>
+            </div>
         </div>
         <div fxLayout="row">
             <div class="form-group" fxLayoutAlign="start">
@@ -74,7 +90,7 @@
                 <app-ngx-editor minHeight="50px" [(ngModel)]="ticket.description" name="description" [placeholder]="'Description'"></app-ngx-editor>
             </div>
         </div>
-        <div class="text-center">
+        <div class="text-center my-4">
             <button mat-raised-button color="primary" [disabled]="!ticketForm.valid">
                 Submit
             </button>

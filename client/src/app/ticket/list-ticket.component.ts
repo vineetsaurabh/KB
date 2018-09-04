@@ -71,7 +71,8 @@ export class ListTicketComponent extends ListComponent implements OnInit {
         let dialogRef: MatDialogRef<CreateTicketComponent>;
         dialogRef = this.dialog.open(CreateTicketComponent, {
             width: '1000px',
-            height: '600px',
+            height: '580px',
+            disableClose: true,
         });
         return dialogRef.afterClosed();
     }

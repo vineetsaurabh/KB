@@ -17,7 +17,8 @@ import { ProductService } from '../product/product.service';
 import { Module } from '../module/module.model';
 
 @Component({
-    templateUrl: './create-ticket.component.html'
+    templateUrl: './create-ticket.component.html',
+    styleUrls: ['./create-ticket.component.css']
 })
 export class CreateTicketComponent extends SelectUserComponent {
 
@@ -26,6 +27,7 @@ export class CreateTicketComponent extends SelectUserComponent {
     products: Product[];
     modules: Module[];
     priorityTypes: PriorityType[];
+    autoAssign: boolean = true;
 
     constructor(
         protected fb: FormBuilder,
