@@ -1,0 +1,55 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header class="faq-panel-header">
+        <mat-panel-title>
+            <div>
+                <h5>{{faq.summary}}</h5>
+            </div>
+        </mat-panel-title>
+        <mat-panel-description>
+
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout="column" fxLayoutGap="8px">
+        <div class="form-group" [hidden]="!editing">
+            <mat-form-field>
+                <input matInput rquired [(ngModel)]="faq.summary" name="summary" id="summary" #summary="ngModel" placeholder="Summary">
+            </mat-form-field>
+        </div>
+        <div>
+            <div>
+                <div [innerHTML]="faq.description" [hidden]="editing"></div>
+                <div class="editor block" [hidden]="!editing">
+                    <app-ngx-editor minHeight="50px" [(ngModel)]="faq.description"></app-ngx-editor>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxlayout.xs="column">
+            <div class="solution-last-modified-on" fxLayoutAlign="start">
+                <span>Provided by &nbsp;</span>
+                <a [routerLink]="['/findUser', faq.createdBy.userid]">
+                    {{faq.createdBy.firstName}} {{faq.createdBy.lastName}} 
+                </a>
+                <span>&nbsp; on {{faq.createdOn | date: 'dd-MMM-yyyy'}}</span>
+            </div>
+            <div class="fill-remaining-space"></div>
+            <div class="solution-last-modified-on" *ngIf="faq.modifiedBy" fxLayoutAlign="end">
+                <span>Last modified by &nbsp;</span>
+                <a [routerLink]="['/findUser', faq.modifiedBy.userid]">
+                    {{faq.modifiedBy.firstName}} {{faq.modifiedBy.lastName}} 
+                </a>
+                <span>&nbsp; on {{faq.modifiedOn | date: 'dd-MMM-yyyy'}}</span>
+            </div>
+        </div>
+    </div>
+    <mat-action-row fxlayout="row" fxLayoutGap="10px" class="faq-panel-action">
+        <button class="btn" matTooltip="Edit FAQ" (click)="openInEdit()" [hidden]="editing" *ngIf="faq.createdBy.userid == userid">
+            <i class="fa fa-pencil"></i>
+        </button>
+        <button class="btn" (click)="saveFaq()" matTooltip="Save" fxLayoutAlign="end" [hidden]="!editing" *ngIf="faq.createdBy.userid == userid">
+            <i class="fa fa-floppy-o"></i>
+        </button>
+        <button class="btn" (click)="deleteFaq()" matTooltip="Delete FAQ" *ngIf="faq.createdBy.userid == userid">
+            <i class="fa fa-trash"></i>
+        </button>
+    </mat-action-row>
+</mat-expansion-panel>

@@ -43,6 +43,8 @@ import { EditProductComponent } from './product/edit-product.component';
 import { AddModuleComponent } from './module/add-module.component';
 import { ListModuleComponent } from './module/list-module.component';
 import { EditModuleComponent } from './module/edit-module.component';
+import { AddFaqComponent } from './faq/add-faq.component';
+import { ListFaqComponent } from './faq/list-faq.component';
 
 const routes: Routes = [
     {
@@ -264,6 +266,14 @@ const routes: Routes = [
                 component: TableConfiguratorComponent
             }
         ]
+    },
+    {
+        path: 'addFaq',
+        component: AddFaqComponent
+    },
+    {
+        path: 'listFaqs',
+        component: ListFaqComponent
     },
 ];
 

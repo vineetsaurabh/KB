@@ -1,0 +1,23 @@
+<div class="container col-md-10 my-2">
+    <div fxLayout="row" fxLayout.xs="row">
+        <div class="fill-remaining-space"></div>
+        <div fxLayoutAlign="center">
+            <h5>FAQs</h5>
+        </div>
+        <div class="fill-remaining-space"></div>
+        <div fxLayoutAlign="end">
+            <button class="btn add-element" (click)="addFaq()" matTooltip="Add Faq" matTooltipPosition="above">
+                <i class="fa fa-plus fa-fw"></i>
+            </button>
+        </div>
+    </div>
+    <div class="my-2" *ngIf="faqs">
+        <div fxLayout="column" fxLayoutGap="5px">
+            <mat-accordion multi="true">
+                <div *ngFor="let faq of faqs">
+                    <faq-detail [(faqs)]="faqs" [faq]="faq"></faq-detail>
+                </div>
+            </mat-accordion>
+        </div>
+    </div>
+</div>
