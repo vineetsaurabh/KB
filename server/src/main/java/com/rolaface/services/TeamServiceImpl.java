@@ -1,5 +1,6 @@
 package com.rolaface.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,14 @@ public class TeamServiceImpl implements TeamService {
 
 	@Override
 	public List<Team> findAll() {
-		return repository.findAll();
+		List<Team> teams = repository.findAll();
+		List<Team> teamsWithSpoc = new ArrayList<>();
+		for (Team team : teams) {
+			team.setSpocUserId(team.getSpoc().getUserid());
+			team.setSpocUserName(team.getSpoc().getFirstName() + " " + team.getSpoc().getLastName());
+			teamsWithSpoc.add(team);
+		}
+		return teamsWithSpoc;
 	}
 
 	@Override

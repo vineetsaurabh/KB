@@ -35,6 +35,13 @@
                 <mat-cell *matCellDef="let product"> {{product.description}} </mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="Default">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Default </mat-header-cell>
+                <mat-cell *matCellDef="let product">
+                    {{product.defaultProduct ? 'Yes':''}}
+                </mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="Owner">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Owner </mat-header-cell>
                 <mat-cell *matCellDef="let product">

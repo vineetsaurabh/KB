@@ -97,10 +97,11 @@ import { FindTicketResultComponent } from './ticket/find-ticket-result.component
 import { CommentComponent } from './comment/comment.component';
 import { ListCommentComponent } from './comment/list-comment.component';
 import { CommentService } from './comment/comment.service';
-import { MyTicketsComponent } from './ticket-filter/my-tickets.component';
+import { MyReportedTicketsComponent } from './ticket-filter/my-reported-tickets.component';
 import { MyAssignedTicketsComponent } from './ticket-filter/my-assigned-tickets.component';
 import { PriorityTicketsComponent } from './ticket-filter/priority-tickets.component';
 import { RecentTicketsComponent } from './ticket-filter/recent-tickets.component';
+import { MyTeamTicketsComponent } from './ticket-filter/my-team-tickets.component';
 import { PriorityReportComponent } from './report/priority-report.component';
 import { AssignTicketComponent } from './ticket/assign-ticket.component';
 import { AssignTeamComponent } from './user/assign-team.component';
@@ -139,7 +140,7 @@ import { EditModuleComponent } from './module/edit-module.component';
         CreateTicketComponent, ListTicketComponent, EditTicketComponent, AssignTicketComponent,
         FindTicketResultComponent, TicketDetailComponent,
         CommentComponent, ListCommentComponent,
-        SubscribedTicketsComponent, MyTicketsComponent, MyAssignedTicketsComponent,
+        SubscribedTicketsComponent, MyReportedTicketsComponent, MyAssignedTicketsComponent, MyTeamTicketsComponent,
         PriorityTicketsComponent, RecentTicketsComponent,
         PriorityReportComponent,
         SearchReportMonthwiseComponent, SearchReportInputwiseComponent,

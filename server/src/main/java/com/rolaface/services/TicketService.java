@@ -15,9 +15,13 @@ public interface TicketService {
 
 	Ticket findByName(String name);
 
-	List<Ticket> findTicketsByType(String type);
+	List<Ticket> findByType(String type);
 
 	List<Ticket> findTickets(String input);
+
+	List<Ticket> findMyTeamTickets(int userid);
+
+	List<Ticket> findByPriority(String priority);
 
 	List<Ticket> findAll();
 

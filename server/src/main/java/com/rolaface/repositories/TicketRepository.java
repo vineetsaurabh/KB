@@ -18,11 +18,15 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
 	Ticket findByName(String name);
 
-	@Query(value = "SELECT * FROM tickets t WHERE t.type = ?1", nativeQuery = true)
-	List<Ticket> findTicketsByType(String domain);
+	List<Ticket> findByType(String type);
 
-	@Query(value = "SELECT * FROM tickets t WHERE t.summary LIKE %:input% OR t.name LIKE %:input%", nativeQuery = true)
+	@Query(value = "SELECT * FROM tickets t WHERE t.summary LIKE %:input% OR t.name LIKE %:input% OR t.description LIKE %:input%", nativeQuery = true)
 	List<Ticket> findTickets(String input);
+
+	@Query(value = "SELECT * FROM tickets t WHERE t.team", nativeQuery = true)
+	List<Ticket> findMyTeamTickets(int userid);
+
+	List<Ticket> findByPriority(String priority);
 
 	@Override
 	List<Ticket> findAll();

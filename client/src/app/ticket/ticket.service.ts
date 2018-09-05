@@ -32,6 +32,22 @@ export class TicketService {
         return this.http.get<Ticket[]>(this.ticketUrl);
     }
 
+    getMyTeamTickets() {
+        return this.http.get<Ticket[]>(this.ticketUrl + '/findmyteamtickets');
+    }
+
+    findByTicketTypes(type: string) {
+        let params = new HttpParams();
+        params = params.append('type', type);
+        return this.http.get<Ticket[]>(this.ticketUrl + '/findbytype', { params: params });
+    }
+
+    findByPriority(priority: string) {
+        let params = new HttpParams();
+        params = params.append('priority', priority);
+        return this.http.get<Ticket[]>(this.ticketUrl + '/findbypriority', { params: params });
+    }
+
     findTickets(input: string) {
         let params = new HttpParams();
         params = params.append('input', input);

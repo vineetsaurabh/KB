@@ -31,7 +31,7 @@
                             {{ticket.creationDate | amTimeAgo}}
                         </div>
                     </div>
-                    <div *ngIf="i == 1">
+                    <div *ngIf="i == 1  && ticket.assignedTo">
                         <div class="state-created-by">
                             {{ticket.assignedTo.firstName}} {{ticket.assignedTo.lastName}}
                         </div>
@@ -63,7 +63,7 @@
             </mat-card>
             <div fxlayout="column" fxLayoutAlign="center">
                 <div *ngIf=" i < states.length - 1">
-                    <button (click)="promote()" [disabled]="ticket.assignedTo.userid != userid">
+                    <button (click)="promote()" [disabled]="!ticket.assignedTo || ticket.assignedTo.userid != userid">
                         <i class="fa fa-arrow-right"></i>
                     </button>
                 </div>

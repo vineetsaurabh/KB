@@ -25,7 +25,6 @@ export class CreateTicketComponent extends SelectUserComponent {
     ticket: Ticket = new Ticket();
     ticketTypes: TicketType[];
     products: Product[];
-    modules: Module[];
     priorityTypes: PriorityType[];
     autoAssign: boolean = true;
 
@@ -55,6 +54,7 @@ export class CreateTicketComponent extends SelectUserComponent {
         this.productService.getProducts()
             .subscribe(data => {
                 this.products = data;
+                this.ticket.product = data.filter(_ => _.defaultProduct)[0];
             });
         super.ngOnInit();
     }

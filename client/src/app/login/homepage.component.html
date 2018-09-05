@@ -4,27 +4,44 @@
 
 <mat-tab-group class="mat-elevation-z2">
     <mat-tab label="Dashboard">
-        <priority-report></priority-report>
+        <ng-template matTabContent>
+            <priority-report></priority-report>
+        </ng-template>
+
     </mat-tab>
     <mat-tab label="All Tickets">
-        <all-tickets></all-tickets>
+        <ng-template matTabContent>
+            <all-tickets></all-tickets>
+        </ng-template>
     </mat-tab>
     <mat-tab label="My Subscribed Tickets">
-        <subscribed-tickets></subscribed-tickets>
+        <ng-template matTabContent>
+            <subscribed-tickets></subscribed-tickets>
+        </ng-template>
     </mat-tab>
-    <mat-tab label="My Tickets">
-        <my-tickets></my-tickets>
+    <mat-tab label="My Reported Tickets">
+        <ng-template matTabContent>
+            <my-reported-tickets></my-reported-tickets>
+        </ng-template>
     </mat-tab>
     <mat-tab label="My Assigned Tickets">
-        <my-assigned-tickets></my-assigned-tickets>
+        <ng-template matTabContent>
+            <my-assigned-tickets></my-assigned-tickets>
+        </ng-template>
     </mat-tab>
     <mat-tab label="Recent Tickets">
-        <recent-tickets></recent-tickets>
+        <ng-template matTabContent>
+            <recent-tickets></recent-tickets>
+        </ng-template>
     </mat-tab>
     <mat-tab label="Priority Tickets">
-        <priority-tickets></priority-tickets>
+        <ng-template matTabContent>
+            <priority-tickets></priority-tickets>
+        </ng-template>
     </mat-tab>
-    <mat-tab label="My Group Tickets">
-        <all-tickets></all-tickets>
+    <mat-tab label="My Team Tickets">
+        <ng-template matTabContent>
+            <!--<my-team-tickets></my-team-tickets>-->
+        </ng-template>
     </mat-tab>
 </mat-tab-group>

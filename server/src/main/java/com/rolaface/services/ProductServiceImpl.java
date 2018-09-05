@@ -31,12 +31,21 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product update(Product product) {
+		Product defaultProduct = null;
 		Product productToUpdate = findById(product.getProductId());
 		if (productToUpdate != null) {
 			productToUpdate.setProductName(product.getProductName());
 			productToUpdate.setDescription(product.getDescription());
 			productToUpdate.setModules(product.getModules());
 			productToUpdate.setProductOwner(product.getProductOwner());
+			if (product.isDefaultProduct() && !productToUpdate.isDefaultProduct()) {
+				defaultProduct = repository.findDefaultProduct();
+				if (defaultProduct != null) {
+					defaultProduct.setDefaultProduct(Boolean.FALSE);
+					repository.save(defaultProduct);
+				}
+				productToUpdate.setDefaultProduct(product.isDefaultProduct());
+			}
 		}
 		return repository.save(productToUpdate);
 	}

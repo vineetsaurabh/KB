@@ -6,5 +6,7 @@ export class Team {
     description: string;
     users: Set<User>;
     spoc: User;
+    spocUserName: string;
+    spocUserId: string;
     checked: boolean;
 }

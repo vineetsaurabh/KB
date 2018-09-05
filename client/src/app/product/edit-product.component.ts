@@ -23,10 +23,12 @@ export class EditProductComponent extends SelectUserComponent {
         description: '',
         modules: new Set<Module>(),
         productOwner: new User(),
+        defaultProduct: false,
         checked: false,
     };
     id: string;
     productForm: FormGroup;
+    defaultProduct: boolean;
 
     constructor(
         protected fb: FormBuilder,
@@ -37,6 +39,7 @@ export class EditProductComponent extends SelectUserComponent {
         @Inject(MAT_DIALOG_DATA) public data: Product) {
         super(fb, userService);
         this.product = this.data;
+        this.defaultProduct = this.data.defaultProduct;
     }
 
     ngOnInit() {

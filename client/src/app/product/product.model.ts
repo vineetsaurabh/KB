@@ -7,5 +7,6 @@ export class Product {
     description: string;
     modules: Set<Module>;
     productOwner: User;
+    defaultProduct: boolean;
     checked: boolean;
 }

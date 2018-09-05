@@ -33,6 +33,9 @@ public class Product {
 	@ManyToOne
 	private User productOwner;
 
+	@Column(name = "default_product", columnDefinition = "BOOLEAN DEFAULT false")
+	private boolean defaultProduct;
+
 	public int getProductId() {
 		return productId;
 	}
@@ -71,6 +74,14 @@ public class Product {
 
 	public void setProductOwner(User productOwner) {
 		this.productOwner = productOwner;
+	}
+
+	public boolean isDefaultProduct() {
+		return defaultProduct;
+	}
+
+	public void setDefaultProduct(boolean defaultProduct) {
+		this.defaultProduct = defaultProduct;
 	}
 
 }

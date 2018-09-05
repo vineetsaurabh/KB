@@ -19,8 +19,8 @@ import { ListComponent } from '../common/list.component';
 export class ListProductComponent extends ListComponent {
 
     products: Product[];
-    allColumns = ['Checkbox', 'Name', 'Description', 'Owner', 'Modules', 'Actions'];
-    displayedColumns = ['Checkbox', 'Name', 'Description', 'Owner', 'Modules', 'Actions'];
+    allColumns = ['Checkbox', 'Name', 'Description', 'Default', 'Owner', 'Modules', 'Actions'];
+    displayedColumns = ['Checkbox', 'Name', 'Description', 'Default', 'Owner', 'Modules', 'Actions'];
     dataSource: MatTableDataSource<Product>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;

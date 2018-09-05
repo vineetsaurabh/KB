@@ -30,13 +30,23 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> findTicketsByType(String type) {
-		return repository.findTicketsByType(type);
+	public List<Ticket> findByType(String type) {
+		return repository.findByType(type);
 	}
 
 	@Override
 	public List<Ticket> findTickets(String input) {
 		return repository.findTickets(input);
+	}
+
+	@Override
+	public List<Ticket> findMyTeamTickets(int userid) {
+		return repository.findMyTeamTickets(userid);
+	}
+
+	@Override
+	public List<Ticket> findByPriority(String priority) {
+		return repository.findByPriority(priority);
 	}
 
 	@Override

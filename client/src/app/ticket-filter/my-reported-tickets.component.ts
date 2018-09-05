@@ -8,10 +8,10 @@ import { TokenStorage } from '../login/token.storage';
 import { Ticket } from '../ticket/ticket.model';
 
 @Component({
-    selector: 'my-tickets',
+    selector: 'my-reported-tickets',
     templateUrl: '../ticket/list-ticket.component.html'
 })
-export class MyTicketsComponent extends ListTicketComponent {
+export class MyReportedTicketsComponent extends ListTicketComponent {
 
     allColumns = ['Checkbox', 'Name', 'Type', 'Summary', 'Actions'];
     displayedColumns = this.allColumns;
@@ -26,10 +26,10 @@ export class MyTicketsComponent extends ListTicketComponent {
     }
 
     ngOnInit() {
-        this.getMyTickets();
+        this.getMyReportedTickets();
     };
 
-    getMyTickets() {
+    getMyReportedTickets() {
         const userId = this.token.getCurrentUserId();
         this.ticketService.getAllTickets()
             .subscribe(data => {

@@ -21,6 +21,8 @@ export class EditTeamComponent extends SelectUserComponent {
         description: '',
         users: new Set<User>(),
         spoc: new User(),
+        spocUserName: '',
+        spocUserId: '',
         checked: false,
     };
     id: string;

@@ -33,7 +33,7 @@ export class RecentTicketsComponent extends ListTicketComponent {
         const user = this.token.getCurrentUser();
         this.ticketService.getAllTickets()
             .subscribe(data => {
-                //data = data.filter(t => this.isFiveDaysOld(t));
+                data = data.filter(t => this.isFiveDaysOld(t));
                 this.dataSource = new MatTableDataSource(data);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
@@ -42,8 +42,8 @@ export class RecentTicketsComponent extends ListTicketComponent {
 
     daysBetween(date) {
         let one_day = 1000 * 60 * 60 * 24;
-        let date_ms = date.getTime();
-        let diff_ms = (new Date()).getTime(); - date_ms;
+        let date_ms = (new Date(date)).getTime();
+        let diff_ms = (new Date()).getTime() - date_ms;
 
         return Math.round(diff_ms / one_day);
     }

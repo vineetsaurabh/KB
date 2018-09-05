@@ -116,9 +116,25 @@ public class TicketController {
 	}
 
 	@GetMapping(value = "/findtickets", params = "input")
-	public List<Ticket> findErrors(@RequestParam("input") String searchString) {
+	public List<Ticket> findTickets(@RequestParam("input") String searchString) {
 		saveSearchHistory(searchString);
 		return ticketService.findTickets(searchString);
+	}
+
+	@GetMapping(value = "/findbytype", params = "type")
+	public List<Ticket> findByType(@RequestParam("type") String type) {
+		return ticketService.findByType(type);
+	}
+
+	@GetMapping(value = "/findbypriority", params = "priority")
+	public List<Ticket> findByPriority(@RequestParam("priority") String priority) {
+		return ticketService.findByPriority(priority);
+	}
+
+	@GetMapping(value = "/findmyteamtickets")
+	public List<Ticket> findMyTeamTickets() {
+		ContextUser contextUser = (ContextUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return ticketService.findMyTeamTickets(contextUser.getUserId());
 	}
 
 	@GetMapping(value = "/findbyname", params = "name")

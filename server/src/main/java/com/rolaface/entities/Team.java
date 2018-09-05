@@ -10,8 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "teams")
@@ -33,7 +37,16 @@ public class Team {
 	private Collection<User> users;
 
 	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private User spoc;
+
+	@JsonInclude()
+	@Transient
+	private String spocUserName;
+
+	@JsonInclude()
+	@Transient
+	private int spocUserId;
 
 	public User getSpoc() {
 		return spoc;
@@ -73,6 +86,22 @@ public class Team {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getSpocUserName() {
+		return spocUserName;
+	}
+
+	public void setSpocUserName(String spocUserName) {
+		this.spocUserName = spocUserName;
+	}
+
+	public int getSpocUserId() {
+		return spocUserId;
+	}
+
+	public void setSpocUserId(int spocUserId) {
+		this.spocUserId = spocUserId;
 	}
 
 }

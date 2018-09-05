@@ -5,15 +5,13 @@ import { ToastrService } from 'ngx-toastr';
 import { ListTicketComponent } from '../ticket/list-ticket.component';
 import { TicketService } from '../ticket/ticket.service';
 import { TokenStorage } from '../login/token.storage';
-import { PriorityType } from '../priority-type/priority-type.model';
-import { PriorityTypeService } from '../priority-type/priority-type.service';
+import { Ticket } from '../ticket/ticket.model';
 
 @Component({
-    selector: 'priority-tickets',
-    //templateUrl: '../ticket-filter/priority-tickets.component.html'
+    selector: 'my-team-tickets',
     templateUrl: '../ticket/list-ticket.component.html'
 })
-export class PriorityTicketsComponent extends ListTicketComponent {
+export class MyTeamTicketsComponent extends ListTicketComponent {
 
     allColumns = ['Checkbox', 'Name', 'Type', 'Summary', 'Actions'];
     displayedColumns = this.allColumns;
@@ -21,7 +19,6 @@ export class PriorityTicketsComponent extends ListTicketComponent {
     constructor(
         protected router: Router,
         protected ticketService: TicketService,
-        private priorityTypeService: PriorityTypeService,
         protected toastService: ToastrService,
         protected token: TokenStorage,
         protected dialog: MatDialog) {
@@ -29,23 +26,16 @@ export class PriorityTicketsComponent extends ListTicketComponent {
     }
 
     ngOnInit() {
-        this.priorityTypeService.getPriorityTypes()
-            .subscribe(data => {
-                /* this.priorityTypes.forEach(priorityType => 
-                    this.getTicketsByPriority(priorityType.priorityTypeName)
-                ); */
-                this.getTicketsByPriority(data[0].priorityTypeName);
-            });
+        this.getMyTeamTickets();
     };
 
-    getTicketsByPriority(priorityTypeName) {
-        this.ticketService.findByPriority(priorityTypeName)
+    getMyTeamTickets() {
+        this.ticketService.getMyTeamTickets()
             .subscribe(data => {
-                this.tickets = data;
                 this.dataSource = new MatTableDataSource(data);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
-            })
+            });
     }
 
 }

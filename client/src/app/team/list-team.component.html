@@ -37,12 +37,10 @@
 
             <ng-container matColumnDef="SPOC">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> SPOC </mat-header-cell>
-                <mat-cell *matCellDef="let team"> 
-                    <div *ngIf="team.spoc">
-                        <a [routerLink]="['../findUser', team.spoc.userid]">
-                            {{team.spoc.firstName}} {{team.spoc.lastName}}
-                        </a> 
-                    </div>
+                <mat-cell *matCellDef="let team">
+                    <a [routerLink]="['../findUser', team.spocUserId]">
+                        {{team.spocUserName}}
+                    </a>
                 </mat-cell>
             </ng-container>
 
