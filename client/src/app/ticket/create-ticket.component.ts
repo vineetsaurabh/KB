@@ -15,6 +15,7 @@ import { SelectUserComponent } from '../common/select-user-component';
 import { Product } from '../product/product.model';
 import { ProductService } from '../product/product.service';
 import { Module } from '../module/module.model';
+import { RolaguruUtils } from '../util/rolaguru.util';
 
 @Component({
     templateUrl: './create-ticket.component.html',
@@ -68,7 +69,23 @@ export class CreateTicketComponent extends SelectUserComponent {
             .subscribe(data => {
                 this.toastService.success(`Ticket ${data.name} added`);
                 this.dialogRef.close(false);
+
+                for (let i = 0; i < this.selectedFiles.length; i++) {
+                    this.ticketService.uploadFile(this.selectedFiles.item(i), data.ticketId)
+                        .subscribe(event => {
+
+                        });
+                }
+                this.selectedFiles = undefined;
             });
     };
+
+    /* File upload */
+    rolaguruUtils = RolaguruUtils.getInstance();
+    selectedFiles: FileList;
+
+    selectFileForTicket(event) {
+        this.selectedFiles = event.target.files;
+    }
 
 }

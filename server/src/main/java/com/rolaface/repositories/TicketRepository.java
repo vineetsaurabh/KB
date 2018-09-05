@@ -23,7 +23,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 	@Query(value = "SELECT * FROM tickets t WHERE t.summary LIKE %:input% OR t.name LIKE %:input% OR t.description LIKE %:input%", nativeQuery = true)
 	List<Ticket> findTickets(String input);
 
-	@Query(value = "SELECT * FROM tickets t WHERE t.team", nativeQuery = true)
+	@Query(value = "SELECT t.* FROM tickets t WHERE t.assigned_to_userid IN "
+			+ "(SELECT b.userid FROM users_teams a, users_teams b WHERE a.teamid = b.teamid AND A.userid = ?1)", nativeQuery = true)
 	List<Ticket> findMyTeamTickets(int userid);
 
 	List<Ticket> findByPriority(String priority);

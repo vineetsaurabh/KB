@@ -1,4 +1,4 @@
-<div class="col-md-10 container">
+<div>
     <div fxLayout="row">
         <div class="fill-remaining-space"></div>
         <h2 class="text-center" class="add-item" fxLayoutAlign="center">Create Ticket</h2>
@@ -89,7 +89,24 @@
                 <app-ngx-editor minHeight="50px" [(ngModel)]="ticket.description" name="description" [placeholder]="'Description'"></app-ngx-editor>
             </div>
         </div>
-        <div class="text-center my-4">
+
+        <div fxLayout="column">
+            <div fxLayoutAlign="start" class="ticket-attachment" fxLayoutGap="5px">
+                <input type="file" (change)="selectFileForTicket($event)" multiple="multiple" accept=".pdf,.doc,.docx,.png,.jpg.,.jpeg">
+            </div>
+            <div fxLayout="column" fxLayoutGap="5px">
+                <div *ngFor="let file of selectedFiles" fxLayout="row" fxLayoutGap="5px">
+                    <div>
+                        {{ file.name }}
+                    </div>
+                    <div>
+                        <small>({{ rolaguruUtils.formatBytes(file.size) }})</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
             <button mat-raised-button color="primary" [disabled]="!ticketForm.valid">
                 Submit
             </button>
