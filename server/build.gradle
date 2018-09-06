@@ -48,6 +48,9 @@ dependencies {
     
     //to generate PDF report
     compile "org.apache.pdfbox:pdfbox:2.0.4"
+    
+    //to parse HTML
+    compile 'org.jsoup:jsoup:1.11.3'
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 

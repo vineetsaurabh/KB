@@ -1,6 +1,10 @@
 package com.rolaface.services;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
 
 import org.springframework.stereotype.Service;
 
@@ -10,6 +14,8 @@ import com.rolaface.entities.Ticket;
 public interface TicketService {
 
 	Ticket save(Ticket ticket);
+
+	Ticket createTicketFromEmail(Message email) throws MessagingException, IOException;
 
 	Ticket findById(int id);
 
