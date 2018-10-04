@@ -73,6 +73,7 @@ export class ListTicketComponent extends ListComponent implements OnInit {
             width: '1000px',
             height: '620px',
             disableClose: true,
+            autoFocus: false,
         });
         return dialogRef.afterClosed();
     }
@@ -93,6 +94,8 @@ export class ListTicketComponent extends ListComponent implements OnInit {
             data: id,
             width: '1000px',
             height: '600px',
+            disableClose: true,
+            autoFocus: false,
         });
         return dialogRef.afterClosed();
     }
@@ -231,6 +234,8 @@ export class ListTicketComponent extends ListComponent implements OnInit {
             data: this.selectedTickets,
             width: '800px',
             height: '600px',
+            disableClose: true,
+            autoFocus: false,
         });
         return dialogRef.afterClosed();
     }

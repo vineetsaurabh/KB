@@ -64,7 +64,7 @@ export class EditTicketComponent extends SelectUserComponent {
         public dialogRef: MatDialogRef<EditTicketComponent>,
         @Inject(MAT_DIALOG_DATA) public data: Ticket) {
         super(fb, userService);
-        this.ticket = this.data;
+            this.ticket = this.data;
     }
 
     ngOnInit() {
@@ -82,6 +82,16 @@ export class EditTicketComponent extends SelectUserComponent {
         this.productService.getProducts()
             .subscribe(data => {
                 this.products = data;
+                this.products.forEach(p => {
+                    if(p.productId === this.ticket.product.productId) {
+                        this.ticket.product = p;
+                        this.ticket.product.modules.forEach(m => {
+                            if(m.moduleId === this.ticket.module.moduleId) {
+                                this.ticket.module = m;
+                            }
+                        });
+                    }
+                });
             });
     }
 

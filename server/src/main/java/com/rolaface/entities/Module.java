@@ -9,7 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "modules")
@@ -31,7 +32,7 @@ public class Module {
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Product product;
 
 	public int getModuleId() {
