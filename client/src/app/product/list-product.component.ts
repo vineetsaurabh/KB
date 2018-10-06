@@ -77,7 +77,7 @@ export class ListProductComponent extends ListComponent {
     onDeleteProduct(product: Product) {
         let dialogRef: MatDialogRef<ConfirmDeleteComponent>;
         dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-            data: `Are you sure you want to delete user ${product.productName}?`
+            data: `Are you sure you want to delete product ${product.productName}?`
         });
         dialogRef.afterClosed().subscribe((ok: boolean) => {
             if (ok) {

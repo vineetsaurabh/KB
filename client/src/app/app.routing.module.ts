@@ -45,6 +45,9 @@ import { ListModuleComponent } from './module/list-module.component';
 import { EditModuleComponent } from './module/edit-module.component';
 import { AddFaqComponent } from './faq/add-faq.component';
 import { ListFaqComponent } from './faq/list-faq.component';
+import { AddFaqSectionComponent } from './faq-section/add-faq-section.component';
+import { EditFaqSectionComponent } from './faq-section/edit-faq-section.component';
+import { ListFaqSectionComponent } from './faq-section/list-faq-section.component';
 
 const routes: Routes = [
     {
@@ -274,6 +277,24 @@ const routes: Routes = [
     {
         path: 'listFaqs',
         component: ListFaqComponent
+    },
+    {
+        path: 'addFaqSection',
+        component: AddFaqSectionComponent
+    },
+    {
+        path: 'listFaqSections',
+        component: ListFaqSectionComponent,
+        children: [
+            {
+                path: ':id',
+                component: EditFaqSectionComponent
+            },
+            {
+                path: '',
+                component: TableConfiguratorComponent
+            }
+        ]
     },
 ];
 

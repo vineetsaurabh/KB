@@ -11,7 +11,7 @@ import com.rolaface.entities.Faq;
 public interface FaqRepository extends JpaRepository<Faq, Long> {
 
 	@Override
-	Faq save(Faq team);
+	Faq save(Faq faq);
 
 	Faq findByFaqId(int faqId);
 
@@ -19,6 +19,6 @@ public interface FaqRepository extends JpaRepository<Faq, Long> {
 	List<Faq> findAll();
 
 	@Override
-	void delete(Faq team);
+	void delete(Faq faq);
 
 }

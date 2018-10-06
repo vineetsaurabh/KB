@@ -1,13 +1,14 @@
 import { User } from "../user/user.model";
-import { FaqSection } from "../faq-section/faq-section.model";
+import { Faq } from "../faq/faq.model";
 
-export class Faq {
-    faqId: string;
-    faqSection: FaqSection;
-    summary: string;
+export class FaqSection {
+    faqSectionId: string;
+    name: string;
     description: string;
+    faqs: Set<Faq>;
     createdBy: User;
     createdOn: Date;
     modifiedBy: User;
     modifiedOn: Date;
+    checked: boolean;
 }

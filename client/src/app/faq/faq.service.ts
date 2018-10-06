@@ -1,10 +1,8 @@
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Faq } from './faq.model';
 import { environment } from '../../environments/environment';
-import { RequestOptions, ResponseContentType } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
@@ -30,7 +28,6 @@ export class FaqService {
     public getFaqs() {
         return this.http.get<Faq[]>(this.faqUrl);
     }
-
 
     public updateFaq(faq) {
         return this.http.put<Faq>(this.faqUrl + "/" + faq.faqid, faq, httpOptions);

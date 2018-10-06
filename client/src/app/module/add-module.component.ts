@@ -44,7 +44,7 @@ export class AddModuleComponent extends SelectUserComponent {
     createModule(): void {
         this.moduleService.createModule(this.module)
             .subscribe(data => {
-                this.toastService.success(`User ${this.module.moduleName} added`);
+                this.toastService.success(`Module ${this.module.moduleName} added`);
                 this.dialogRef.close(false);
             });
     };

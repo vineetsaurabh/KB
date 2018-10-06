@@ -372,3 +372,8 @@ canvas#searchReportChart{
 .mat-column-Phone{
     max-width: 120px;
 }
+/* FAQ */
+.faq-section-title{
+    color: darkblue;
+    font-weight: bold;
+}

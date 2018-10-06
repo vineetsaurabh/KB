@@ -11,13 +11,20 @@
             </button>
         </div>
     </div>
-    <div class="my-2" *ngIf="faqs">
-        <div fxLayout="column" fxLayoutGap="5px">
-            <mat-accordion multi="true">
-                <div *ngFor="let faq of faqs">
-                    <faq-detail [(faqs)]="faqs" [faq]="faq"></faq-detail>
+    <div class="my-2" *ngIf="faqSections">
+        <div fxLayoutGap="5px">
+            <div *ngFor="let faqSection of faqSections">
+                <div fxLayout="column">
+                    <div fxLayoutAlign="center" class="faq-section-title my-2">
+                        <h6>{{ faqSection.name }}</h6>
+                    </div>
+                    <mat-accordion multi="true">
+                        <div *ngFor="let faq of faqSection.faqs">
+                            <faq-detail [(faqs)]="faqSection.faqs" [faq]="faq"></faq-detail>
+                        </div>
+                    </mat-accordion>
                 </div>
-            </mat-accordion>
+            </div>
         </div>
     </div>
 </div>

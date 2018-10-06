@@ -3,7 +3,7 @@
     <form #editProductForm="ngForm" (ngSubmit)="updateProduct(editProductForm)" ngNativeValidate>
         <div class="form-group">
             <mat-form-field>
-                <input matInput required [(ngModel)]="product.productName" name="name" id="name" #firstName="ngModel" placeholder="Name">
+                <input matInput required [(ngModel)]="product.productName" name="name" id="name" #productName="ngModel" placeholder="Name">
             </mat-form-field>
         </div>
         <div class="form-group">

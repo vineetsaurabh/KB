@@ -36,7 +36,7 @@ export class AddProductComponent extends SelectUserComponent {
     createProduct(): void {
         this.productService.createProduct(this.product)
             .subscribe(data => {
-                this.toastService.success(`User ${this.product.productName} added`);
+                this.toastService.success(`Product ${this.product.productName} added`);
                 this.dialogRef.close(false);
             });
     };

@@ -23,7 +23,7 @@ export class AddStateComponent {
     createState(): void {
         this.stateService.createState(this.state)
             .subscribe(data => {
-                this.toastService.success(`User ${this.state.stateName} added`);
+                this.toastService.success(`State ${this.state.stateName} added`);
                 this.dialogRef.close(false);
             });
     }

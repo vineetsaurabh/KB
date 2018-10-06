@@ -30,6 +30,7 @@
                     <button mat-menu-item [routerLink]="['/findUser', currentUserId]">My Profile</button>
                     <button mat-menu-item [matMenuTriggerFor]="useradmin">User Admin</button>
                     <button mat-menu-item [matMenuTriggerFor]="ticketadmin">Ticket Admin</button>
+                    <button mat-menu-item [routerLink]="['/listFaqSections']">FAQ Section Management</button>
                     <button mat-menu-item [matMenuTriggerFor]="reports">Reports</button>
                 </mat-menu>
                 <mat-menu #useradmin="matMenu">

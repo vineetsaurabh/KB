@@ -133,6 +133,10 @@ import { FaqService } from './faq/faq.service';
 import { AddFaqComponent } from './faq/add-faq.component';
 import { ListFaqComponent } from './faq/list-faq.component';
 import { FaqComponent } from './faq/faq.component';
+import { FaqSectionService } from './faq-section/faq-section.service';
+import { AddFaqSectionComponent } from './faq-section/add-faq-section.component';
+import { EditFaqSectionComponent } from './faq-section/edit-faq-section.component';
+import { ListFaqSectionComponent } from './faq-section/list-faq-section.component';
 
 @NgModule({
     declarations: [
@@ -156,6 +160,7 @@ import { FaqComponent } from './faq/faq.component';
         AddProductComponent, ListProductComponent, EditProductComponent,
         AddModuleComponent, ListModuleComponent, EditModuleComponent,
         AddFaqComponent, ListFaqComponent, FaqComponent,
+        AddFaqSectionComponent, EditFaqSectionComponent, ListFaqSectionComponent,
     ],
     imports: [
         BrowserModule,
@@ -219,7 +224,7 @@ import { FaqComponent } from './faq/faq.component';
         RoleService, TeamService,
         ProductService, ModuleService,
         TicketTypeService, PriorityTypeService, StateService,
-        FaqService,
+        FaqService, FaqSectionService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

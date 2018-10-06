@@ -1,6 +1,24 @@
 <div class="container">
-    <h4 fxLayoutAlign="center" class="add-item add-solution">Add FAQ</h4>
+    <div fxLayout="row">
+        <div class="fill-remaining-space"></div>
+        <h2 class="text-center" class="add-item" fxLayoutAlign="center">Add FAQ</h2>
+        <div class="fill-remaining-space"></div>
+        <div fxLayoutAlign="end center">
+            <button class="close" mat-dialog-close>
+                <i class="fa fa-remove" matTooltip="Close"></i>
+            </button>
+        </div>
+    </div>
     <form #faqForm="ngForm" (ngSubmit)="createFaq(faqForm)" ngNativeValidate>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-select required placeholder="Choose Faq Section" [(ngModel)]="faq.faqSection" name="faqSection" id="faqSection">
+                    <mat-option *ngFor="let faqSection of faqSections" [value]="faqSection">
+                        {{faqSection.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
         <div class="form-group">
             <mat-form-field>
                 <input matInput rquired [(ngModel)]="faq.summary" name="summary" id="summary" #summary="ngModel" placeholder="Summary">
@@ -8,11 +26,11 @@
         </div>
         <div class="form-group">
             <div class="editor block">
-                <app-ngx-editor minHeight="200px" [(ngModel)]="htmlDescription" name="description"></app-ngx-editor>
+                <app-ngx-editor minHeight="200px" [(ngModel)]="faq.description" name="description"></app-ngx-editor>
             </div>
         </div>
         <div class="text-center">
-            <button mat-raised-button color="primary" [disabled]="!faqForm.valid || htmlDescription==''">
+            <button mat-raised-button color="primary" [disabled]="!faqForm.valid || faq.description==''">
                 Submit
             </button>
         </div>

@@ -3,62 +3,58 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 
-import { Team } from './team.model';
-import { TeamService } from './team.service';
+import { FaqSection } from './faq-section.model';
+import { FaqSectionService } from './faq-section.service';
 import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
 import { SelectUserComponent } from '../common/select-user-component';
 
+
 @Injectable()
 @Component({
-    templateUrl: './edit-team.component.html'
+    templateUrl: './edit-faq-section.component.html'
 })
-export class EditTeamComponent extends SelectUserComponent {
+export class EditFaqSectionComponent extends SelectUserComponent {
 
-    public team: Team = {
-        teamid: '',
-        teamName: '',
+    public faqSection: FaqSection = {
+        faqSectionId: '',
+        name: '',
         description: '',
-        users: new Set<User>(),
-        spoc: new User(),
-        spocUserName: '',
-        spocUserId: '',
+        createdBy: new User(),
+        createdOn: new Date(),
+        modifiedBy: new User(),
+        modifiedOn: new Date(),
         checked: false,
     };
     id: string;
-    teamForm: FormGroup;
+    faqSectionForm: FormGroup;
+    defaultFaqSection: boolean;
 
     constructor(
         protected fb: FormBuilder,
         protected userService: UserService,
-        private teamService: TeamService,
+        private faqSectionService: FaqSectionService,
         private toastService: ToastrService,
-        public dialogRef: MatDialogRef<EditTeamComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Team) {
+        public dialogRef: MatDialogRef<EditFaqSectionComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: FaqSection) {
         super(fb, userService);
-        this.team = this.data;
+        this.faqSection = this.data;
     }
 
     ngOnInit() {
         super.ngOnInit();
-        this.userNameForm.get('userNameGroup').setValue(this.team.spoc);
-        this.teamForm = this.fb.group({
-            teamid: 0,
+        this.faqSectionForm = this.fb.group({
+            faqSectionId: 0,
             name: ['', [Validators.required]],
             description: ['', [Validators.required]],
-        });
+        })
     }
 
-    updateTeam() {
-        this.teamService.updateTeam(this.team)
+    editFaqSection() {
+        this.faqSectionService.updateFaqSection(this.faqSection)
             .subscribe(res => {
-                this.toastService.success(`Team ${this.team.teamName} updated`);
                 this.dialogRef.close(false);
             });
-    }
-
-    setSpoc(user: User) {
-        this.team.spoc = user;
     }
 
 }

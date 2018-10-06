@@ -43,7 +43,7 @@ export class EditRoleComponent implements OnInit {
     updateRole(userForm: NgForm) {
         this.roleService.updateRole(this.role)
             .subscribe(res => {
-                this.toastService.success(`User ${this.role.roleName} updated`);
+                this.toastService.success(`Role ${this.role.roleName} updated`);
                 this.dialogRef.close(false);
             });
     }

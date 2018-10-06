@@ -41,14 +41,14 @@
             </div>
         </div>
     </div>
-    <mat-action-row fxlayout="row" fxLayoutGap="10px" class="faq-panel-action">
-        <button class="btn" matTooltip="Edit FAQ" (click)="openInEdit()" [hidden]="editing" *ngIf="faq.createdBy.userid == userid">
+    <mat-action-row fxlayout="row" fxLayoutGap="10px" class="faq-panel-action" *ngIf="faq.createdBy.userid == userid">
+        <button class="btn" matTooltip="Edit FAQ" (click)="openInEdit()" [hidden]="editing">
             <i class="fa fa-pencil"></i>
         </button>
-        <button class="btn" (click)="saveFaq()" matTooltip="Save" fxLayoutAlign="end" [hidden]="!editing" *ngIf="faq.createdBy.userid == userid">
+        <button class="btn" (click)="saveFaq()" matTooltip="Save" fxLayoutAlign="end" [hidden]="!editing">
             <i class="fa fa-floppy-o"></i>
         </button>
-        <button class="btn" (click)="deleteFaq()" matTooltip="Delete FAQ" *ngIf="faq.createdBy.userid == userid">
+        <button class="btn" (click)="deleteFaq()" matTooltip="Delete FAQ">
             <i class="fa fa-trash"></i>
         </button>
     </mat-action-row>
