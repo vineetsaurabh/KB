@@ -35,6 +35,7 @@ import com.rolaface.services.TicketSearchHistoryService;
 import com.rolaface.services.TicketService;
 import com.rolaface.services.TicketSubscribeService;
 import com.rolaface.services.UserService;
+import com.rolaface.util.RolaUtil;
 import com.rolaface.util.StringUtils;
 
 @RestController
@@ -100,7 +101,8 @@ public class TicketController {
 		}
 		Ticket newTicket = ticketService.save(ticket);
 
-		String name = "ROLA-" + String.format("%4s", String.valueOf(newTicket.getTicketId())).replace(' ', '0');
+		String name = "IZB" + RolaUtil.getJulianDate()
+				+ String.format("%4s", String.valueOf(newTicket.getTicketId())).replace(' ', '0');
 		newTicket.setName(name);
 		return ticketService.update(newTicket);
 	}

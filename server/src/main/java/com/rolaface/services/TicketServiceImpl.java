@@ -18,6 +18,7 @@ import com.rolaface.entities.Ticket;
 import com.rolaface.entities.User;
 import com.rolaface.repositories.TicketRepository;
 import com.rolaface.repositories.UserRepository;
+import com.rolaface.util.RolaUtil;
 import com.rolaface.util.StringUtils;
 
 @Service(value = "ticketService")
@@ -64,7 +65,8 @@ public class TicketServiceImpl implements TicketService {
 			}
 		}
 		Ticket newTicket = repository.save(ticket);
-		String name = "ROLA-" + String.format("%4s", String.valueOf(newTicket.getTicketId())).replace(' ', '0');
+		String name = "IZB" + RolaUtil.getJulianDate()
+				+ String.format("%4s", String.valueOf(newTicket.getTicketId())).replace(' ', '0');
 		newTicket.setName(name);
 		return repository.save(newTicket);
 	}

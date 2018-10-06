@@ -36,7 +36,6 @@ public class ProductServiceImpl implements ProductService {
 		if (productToUpdate != null) {
 			productToUpdate.setProductName(product.getProductName());
 			productToUpdate.setDescription(product.getDescription());
-			productToUpdate.setModules(product.getModules());
 			productToUpdate.setProductOwner(product.getProductOwner());
 			if (product.isDefaultProduct() && !productToUpdate.isDefaultProduct()) {
 				defaultProduct = repository.findDefaultProduct();
