@@ -11,6 +11,7 @@ import { AddProductComponent } from './add-product.component';
 import { EditProductComponent } from './edit-product.component';
 import { ConfirmDeleteComponent } from '../util/confirm-delete.component';
 import { ListComponent } from '../common/list.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -30,8 +31,9 @@ export class ListProductComponent extends ListComponent {
         private router: Router,
         private productService: ProductService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-            super(dialog);
+            super(token, dialog);
     }
 
     ngOnInit() {

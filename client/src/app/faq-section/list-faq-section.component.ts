@@ -11,6 +11,7 @@ import { AddFaqSectionComponent } from './add-faq-section.component';
 import { EditFaqSectionComponent } from './edit-faq-section.component';
 import { ConfirmDeleteComponent } from '../util/confirm-delete.component';
 import { ListComponent } from '../common/list.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -30,8 +31,9 @@ export class ListFaqSectionComponent extends ListComponent {
         private router: Router,
         private faqSectionService: FaqSectionService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-            super(dialog);
+            super(token, dialog);
     }
 
     ngOnInit() {

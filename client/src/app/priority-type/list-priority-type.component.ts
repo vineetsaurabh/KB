@@ -11,6 +11,7 @@ import { AddPriorityTypeComponent } from './add-priority-type.component';
 import { EditPriorityTypeComponent } from './edit-priority-type.component';
 import { ConfirmDeleteComponent } from '../util/confirm-delete.component';
 import { ListComponent } from '../common/list.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -30,8 +31,9 @@ export class ListPriorityTypeComponent extends ListComponent implements OnInit {
         private router: Router,
         private priorityTypeService: PriorityTypeService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-            super(dialog);
+            super(token, dialog);
     }
 
     ngOnInit() {

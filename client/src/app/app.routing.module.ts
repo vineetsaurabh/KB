@@ -48,6 +48,7 @@ import { ListFaqComponent } from './faq/list-faq.component';
 import { AddFaqSectionComponent } from './faq-section/add-faq-section.component';
 import { EditFaqSectionComponent } from './faq-section/edit-faq-section.component';
 import { ListFaqSectionComponent } from './faq-section/list-faq-section.component';
+import { UserPreferenceComponent } from './user-preference/user-preference.component';
 
 const routes: Routes = [
     {
@@ -296,6 +297,11 @@ const routes: Routes = [
             }
         ]
     },
+    {
+        path: 'myPreferences',
+        component: UserPreferenceComponent
+    },
+    
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { AddRoleComponent } from './add-role.component';
 import { EditRoleComponent } from './edit-role.component';
 import { ConfirmDeleteComponent } from '../util/confirm-delete.component';
 import { ListComponent } from '../common/list.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -30,8 +31,9 @@ export class ListRoleComponent extends ListComponent implements OnInit {
         private router: Router,
         private roleService: RoleService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-            super(dialog);
+            super(token, dialog);
     }
 
     ngOnInit() {

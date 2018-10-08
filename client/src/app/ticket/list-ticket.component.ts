@@ -39,7 +39,7 @@ export class ListTicketComponent extends ListComponent implements OnInit {
         protected toastService: ToastrService,
         protected token: TokenStorage,
         protected dialog: MatDialog) {
-        super(dialog);
+        super(token, dialog);
     }
 
     ngOnInit() {
@@ -47,6 +47,12 @@ export class ListTicketComponent extends ListComponent implements OnInit {
             this.getTickets();
             this.getSubscribedTicketIds();
         });
+        if (this.token.getTicketTableColumns()) {
+            this.displayedColumns = [];
+            this.token.getTicketTableColumns().split(",").forEach(element => {
+                this.displayedColumns.push(element);
+            });
+        }
     };
 
     applyFilter(filterValue: string) {

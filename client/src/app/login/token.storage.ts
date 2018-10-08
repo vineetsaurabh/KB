@@ -4,6 +4,8 @@ const TOKEN_KEY = 'AuthToken';
 const CUREENT_USER = 'currentUser';
 const CUREENT_USER_ID = 'currentUserId';
 const SUBSCRIBED_TICKET = 'subscribedTicket';
+const PAGINATION = 'pagination';
+const TICKET_TABLE_COLUMNS = 'ticketTableColumns';
 
 @Injectable()
 export class TokenStorage {
@@ -73,6 +75,21 @@ export class TokenStorage {
         });
         this.saveSubscribedTicket(subscribedTicketIdsArr.join(","));
         return this.getSubscribedTicketIds();
+    }
+
+    public savePagination(pagination: string) {
+        window.sessionStorage.removeItem(PAGINATION);
+        window.sessionStorage.setItem(PAGINATION, pagination);
+    }
+     public getPagination(): string {
+        return sessionStorage.getItem(PAGINATION);
+    }
+     public saveTicketTableColumns(ticketTableColumns: string) {
+        window.sessionStorage.removeItem(TICKET_TABLE_COLUMNS);
+        window.sessionStorage.setItem(TICKET_TABLE_COLUMNS, ticketTableColumns);
+    }
+     public getTicketTableColumns(): string {
+        return sessionStorage.getItem(TICKET_TABLE_COLUMNS);
     }
 
 }

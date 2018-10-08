@@ -137,6 +137,8 @@ import { FaqSectionService } from './faq-section/faq-section.service';
 import { AddFaqSectionComponent } from './faq-section/add-faq-section.component';
 import { EditFaqSectionComponent } from './faq-section/edit-faq-section.component';
 import { ListFaqSectionComponent } from './faq-section/list-faq-section.component';
+import { UserPreferenceComponent } from './user-preference/user-preference.component';
+import { UserPreferenceService } from './user-preference/user-preference.service';
 
 @NgModule({
     declarations: [
@@ -161,6 +163,7 @@ import { ListFaqSectionComponent } from './faq-section/list-faq-section.componen
         AddModuleComponent, ListModuleComponent, EditModuleComponent,
         AddFaqComponent, ListFaqComponent, FaqComponent,
         AddFaqSectionComponent, EditFaqSectionComponent, ListFaqSectionComponent,
+        UserPreferenceComponent,
     ],
     imports: [
         BrowserModule,
@@ -225,6 +228,7 @@ import { ListFaqSectionComponent } from './faq-section/list-faq-section.componen
         ProductService, ModuleService,
         TicketTypeService, PriorityTypeService, StateService,
         FaqService, FaqSectionService,
+        UserPreferenceService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { TokenStorage } from './token.storage';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
+import { UserPreferenceService } from '../user-preference/user-preference.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class LoginComponent {
     public dialog: MatDialog,
     private authService: AuthService,
     private token: TokenStorage,
-    private userService: UserService) {
+    private userService: UserService,
+    private userPreferenceService: UserPreferenceService) {
   }
 
   login(): void {
@@ -35,6 +37,13 @@ export class LoginComponent {
             this.userService.getSubscribedTicketIds()
               .subscribe(subscribedTicketIds => {
                 this.token.saveSubscribedTicket(subscribedTicketIds.toString());
+              });
+              this.userPreferenceService.getCurrentUserPreference()
+              .subscribe(data => {
+                if (data) {
+                  this.token.savePagination(data.pagination);
+                  this.token.saveTicketTableColumns(data.ticketTableColumns);
+                }
               });
             this.router.navigate(['homepage']);
           });

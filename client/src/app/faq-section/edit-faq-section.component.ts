@@ -8,6 +8,7 @@ import { FaqSectionService } from './faq-section.service';
 import { User } from '../user/user.model';
 import { UserService } from '../user/user.service';
 import { SelectUserComponent } from '../common/select-user-component';
+import { Faq } from '../faq/faq.model';
 
 
 @Injectable()
@@ -20,6 +21,7 @@ export class EditFaqSectionComponent extends SelectUserComponent {
         faqSectionId: '',
         name: '',
         description: '',
+        faqs: new Set<Faq>(),
         createdBy: new User(),
         createdOn: new Date(),
         modifiedBy: new User(),

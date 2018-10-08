@@ -10,6 +10,7 @@ import { AddStateComponent } from './add-state.component';
 import { EditStateComponent } from './edit-state.component';
 import { ConfirmDeleteComponent } from '../util/confirm-delete.component';
 import { ListComponent } from '../common/list.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -28,8 +29,9 @@ export class ListStateComponent extends ListComponent {
     constructor(
         private stateService: StateService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-            super(dialog);
+            super(token, dialog);
     }
 
     ngOnInit() {

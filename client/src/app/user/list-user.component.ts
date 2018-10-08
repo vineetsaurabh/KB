@@ -13,6 +13,7 @@ import { ListComponent } from '../common/list.component';
 import { EditUserComponent } from './edit-user.component';
 import { AssignRoleComponent } from './assign-role.component';
 import { AssignTeamComponent } from './assign-team.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -32,8 +33,9 @@ export class ListUserComponent extends ListComponent implements OnInit {
         private router: Router,
         private userService: UserService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-        super(dialog);
+        super(token, dialog);
     }
 
     ngOnInit() {

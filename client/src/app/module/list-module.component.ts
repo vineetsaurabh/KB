@@ -11,6 +11,7 @@ import { AddModuleComponent } from './add-module.component';
 import { EditModuleComponent } from './edit-module.component';
 import { ConfirmDeleteComponent } from '../util/confirm-delete.component';
 import { ListComponent } from '../common/list.component';
+import { TokenStorage } from '../login/token.storage';
 
 @Component({
     selector: 'app-comp',
@@ -30,8 +31,9 @@ export class ListModuleComponent extends ListComponent implements OnInit {
         private router: Router,
         private moduleService: ModuleService,
         private toastService: ToastrService,
+        protected token: TokenStorage,
         protected dialog: MatDialog) {
-            super(dialog);
+            super(token, dialog);
     }
 
     ngOnInit() {
